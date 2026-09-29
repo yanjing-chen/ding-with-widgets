@@ -1,0 +1,99 @@
+:root {
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter,
+    "Noto Sans CJK SC", "Noto Sans", sans-serif;
+  --text: rgba(255, 255, 255, .96);
+  --secondary: rgba(255, 255, 255, .66);
+  --hairline: rgba(255, 255, 255, .22);
+  --panel-top: rgba(58, 58, 62, .82);
+  --panel-bottom: rgba(22, 22, 25, .78);
+  --control: rgba(255, 255, 255, .13);
+  --widget-opacity: 1;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  user-select: none;
+}
+
+button, input, textarea { font: inherit; }
+
+.glass-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 22px;
+  background: transparent;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .18);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--widget-opacity);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.14), transparent 38%),
+    linear-gradient(160deg, var(--panel-top), var(--panel-bottom));
+}
+
+.glass-card > * { position: relative; z-index: 1; }
+
+.setting-slider {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.setting-slider input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: #0a84ff;
+}
+
+.setting-slider output {
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: rgba(20, 20, 24, .94);
+    --secondary: rgba(20, 20, 24, .58);
+    --hairline: rgba(255, 255, 255, .66);
+    --panel-top: rgba(255, 255, 255, .86);
+    --panel-bottom: rgba(226, 229, 236, .76);
+    --control: rgba(255, 255, 255, .52);
+  }
+  .glass-card { box-shadow: inset 0 1px white; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css?v=7">
+  <title>便笺</title>
+</head>
+<body>
+  <main id="note" class="note glass-card" data-color="yellow">
+    <header class="note-header">
+      <input id="note-title" type="text" maxlength="60" value=""
+        placeholder="新便笺" aria-label="便笺标题" title="点击编辑标题">
+      <div class="note-actions">
+        <button id="format-toggle" class="header-button" type="button"
+          aria-label="文字格式" title="文字格式">Aa</button>
+      </div>
+    </header>
+
+    <section id="format-panel" class="format-panel" hidden>
+      <div class="format-row">
+        <select id="font-family" aria-label="字体">
+          <option value="-apple-system, BlinkMacSystemFont, Noto Sans CJK SC, Noto Sans, sans-serif">苹方风格黑体</option>
+          <option value="Noto Sans CJK SC, Noto Sans, sans-serif">思源黑体</option>
+          <option value="Noto Serif CJK SC, Noto Serif, serif">思源宋体</option>
+          <option value="Noto Sans Mono, monospace">等宽字体</option>
+        </select>
+        <button data-command="font-down" title="减小字号">A−</button>
+        <button data-command="font-up" title="增大字号">A＋</button>
+        <button data-command="bold" title="粗体"><b>B</b></button>
+        <button data-command="italic" title="斜体"><i>I</i></button>
+        <button data-command="underline" title="下划线"><u>U</u></button>
+        <button data-command="strike" title="删除线"><s>S</s></button>
+      </div>
+      <div class="format-row compact">
+        <button data-command="align-left" title="左对齐">≡</button>
+        <button data-command="align-center" title="居中">≡</button>
+        <button data-command="align-right" title="右对齐">≡</button>
+        <button data-command="list-ul" title="项目列表">• 列表</button>
+        <button data-command="list-ol" title="编号列表">1. 列表</button>
+        <button data-command="checklist" title="待办清单">☑ 待办</button>
+        <button data-command="h1" title="一级标题">H1</button>
+        <button data-command="h2" title="二级标题">H2</button>
+        <button data-command="h3" title="三级标题">H3</button>
+        <button data-command="blockquote" title="引用">❝</button>
+        <button data-command="link" title="插入链接">链接</button>
+        <button data-command="clear" title="清除格式">清除</button>
+      </div>
+      <div class="appearance-row">
+        <div id="palette" class="palette" aria-label="便笺颜色">
+          <button data-color="yellow" title="黄色"></button>
+          <button data-color="pink" title="粉色"></button>
+          <button data-color="mint" title="薄荷绿"></button>
+          <button data-color="blue" title="蓝色"></button>
+          <button data-color="peach" title="蜜桃色"></button>
+          <button data-color="lavender" title="薰衣草色"></button>
+        </div>
+        <label class="opacity-control">透明度
+          <input id="opacity" type="range" min="35" max="100" step="5">
+          <output id="opacity-value">100%</output>
+        </label>
+      </div>
+      <label class="title-size-control">标题字号
+        <input id="title-font-size" type="range" min="11" max="28" step="1">
+        <output id="title-font-size-value">15 像素</output>
+      </label>
+    </section>
+
+    <article id="editor" class="editor" contenteditable="true" spellcheck="true"
+      role="textbox" aria-multiline="true" aria-label="便笺内容"></article>
+    <footer><span id="status">自动保存</span><span id="font-size-label">18 像素</span></footer>
+
+    <div id="link-dialog" class="dialog-backdrop" hidden>
+      <form id="link-form" class="link-dialog">
+        <strong>插入链接</strong>
+        <input id="link-input" type="url" placeholder="https://example.com">
+        <div><button id="link-cancel" type="button">取消</button><button type="submit">应用</button></div>
+      </form>
+    </div>
+  </main>
+  <script src="note.js?v=7"></script>
+</body>
+</html>

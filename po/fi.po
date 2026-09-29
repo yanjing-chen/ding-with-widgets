@@ -1,0 +1,973 @@
+# Finnish translation for desktop-icons.
+# Copyright (C) 2018-2022 desktop-icons's COPYRIGHT HOLDER
+# This file is distributed under the same license as the desktop-icons package.
+#
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2018.
+# Timo Jyrinki <timo.jyrinki+l10n@gmail.com>, 2021.
+# Tuomas Nurmi <tuomas.nurmi@opinsys.fi>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop-icons master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-05 08:41+0200\n"
+"PO-Revision-Date: 2022-04-13 16:28+0300\n"
+"Last-Translator: Tuomas Nurmi <tuomas.nurmi@opinsys.fi>\n"
+"Language-Team: Finnish <>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2021-04-08 06:16+0000\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: app/askRenamePopup.js:54
+#, fuzzy
+msgid "Rename folder"
+msgstr "Uusi kansio"
+
+#: app/askRenamePopup.js:54
+#, fuzzy
+msgid "Rename file"
+msgstr "Nimeä uudelleen"
+
+#: app/askRenamePopup.js:64
+#, fuzzy
+msgid "New filename"
+msgstr "Tiedoston nimi"
+
+#: app/askRenamePopup.js:69 app/autoAr.js:307 app/autoAr.js:559
+#: app/desktopManager.js:1036
+msgid "OK"
+msgstr "OK"
+
+#: app/askRenamePopup.js:69
+msgid "Rename"
+msgstr "Nimeä uudelleen"
+
+#: app/autoAr.js:76
+msgid "AutoAr is not installed"
+msgstr ""
+
+#: app/autoAr.js:77
+msgid ""
+"To be able to work with compressed files, install file-roller and/or gir-1.2-"
+"gnomeAutoAr"
+msgstr ""
+
+#: app/autoAr.js:216
+#, fuzzy
+msgid "Extracting files"
+msgstr "Pura tänne"
+
+#: app/autoAr.js:233
+#, fuzzy
+msgid "Compressing files"
+msgstr "Pakkaa {0} tiedosto"
+
+#: app/autoAr.js:299 app/autoAr.js:566 app/desktopManager.js:1039
+#: app/fileItemMenu.js:575
+msgid "Cancel"
+msgstr "Peru"
+
+#: app/autoAr.js:320 app/autoAr.js:635
+msgid "Enter a password here"
+msgstr ""
+
+#: app/autoAr.js:353
+msgid "Removing partial file '${outputFile}'"
+msgstr ""
+
+#: app/autoAr.js:372
+msgid "Creating destination folder"
+msgstr ""
+
+#: app/autoAr.js:404
+msgid "Extracting files into '${outputPath}'"
+msgstr ""
+
+#: app/autoAr.js:436
+#, fuzzy
+msgid "Extraction completed"
+msgstr "Pura tänne"
+
+#: app/autoAr.js:437
+msgid "Extracting '${fullPathFile}' has been completed."
+msgstr ""
+
+#: app/autoAr.js:443
+#, fuzzy
+msgid "Extraction cancelled"
+msgstr "Pura tänne"
+
+#: app/autoAr.js:444
+msgid "Extracting '${fullPathFile}' has been cancelled by the user."
+msgstr ""
+
+#: app/autoAr.js:454
+msgid "Passphrase required for ${filename}"
+msgstr ""
+
+#: app/autoAr.js:457
+msgid "Error during extraction"
+msgstr ""
+
+#: app/autoAr.js:486
+msgid "Compressing files into '${outputFile}'"
+msgstr ""
+
+#: app/autoAr.js:499
+msgid "Compression completed"
+msgstr ""
+
+#: app/autoAr.js:500
+msgid "Compressing files into '${outputFile}' has been completed."
+msgstr ""
+
+#: app/autoAr.js:504 app/autoAr.js:511
+msgid "Cancelled compression"
+msgstr ""
+
+#: app/autoAr.js:505
+msgid "The output file '${outputFile}' already exists."
+msgstr ""
+
+#: app/autoAr.js:512
+msgid "Compressing files into '${outputFile}' has been cancelled by the user."
+msgstr ""
+
+#: app/autoAr.js:515
+msgid "Error during compression"
+msgstr ""
+
+#: app/autoAr.js:548
+msgid "Create archive"
+msgstr ""
+
+#: app/autoAr.js:592
+#, fuzzy
+msgid "Archive name"
+msgstr "Tiedoston nimi"
+
+#: app/autoAr.js:630
+msgid "Password"
+msgstr ""
+
+#: app/autoAr.js:719
+msgid "Compatible with all operating systems."
+msgstr ""
+
+#: app/autoAr.js:725
+msgid "Password protected .zip, must be installed on Windows and Mac."
+msgstr ""
+
+#: app/autoAr.js:731
+msgid "Smaller archives but Linux and Mac only."
+msgstr ""
+
+#: app/autoAr.js:737
+msgid "Smaller archives but must be installed on Windows and Mac."
+msgstr ""
+
+#: app/dbusUtils.js:73
+msgid "\"${programName}\" is needed for Desktop Icons"
+msgstr "\"${programName}\" tarvitaan työpöytäkuvakkeisiin"
+
+#: app/dbusUtils.js:74
+msgid ""
+"For this functionality to work in Desktop Icons, you must install \"$"
+"{programName}\" in your system."
+msgstr ""
+"Tämä työpöytäkuvakkeiden toiminnallisuus vaatii ohjelman\"${programName}\" "
+"asentamisen järjestelmään."
+
+#: app/desktopIconsUtil.js:170
+msgid "Command not found"
+msgstr "Komentoa ei löydy"
+
+#: app/desktopManager.js:279
+msgid "Nautilus File Manager not found"
+msgstr "Nautilus-tiedostonhallintaa ei löydy"
+
+#: app/desktopManager.js:280
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr "Nautilus-tiedostonhallinta vaaditaan tämän laajennuksen käyttämiseen."
+
+#: app/desktopManager.js:935
+msgid "Clear Current Selection before New Search"
+msgstr "Tyhjennä nykyinen valinta ennen uutta hakua"
+
+#: app/desktopManager.js:1026
+msgid "Find Files on Desktop"
+msgstr "Etsi tiedostoja työpöydällä"
+
+#: app/desktopManager.js:1713
+msgid "New Folder"
+msgstr "Uusi kansio"
+
+#: app/desktopManager.js:1726
+#, fuzzy
+msgid "Folder Creation Failed"
+msgstr "Kansion nimi"
+
+#: app/desktopManager.js:1727
+#, fuzzy
+msgid "Error while trying to create a Folder"
+msgstr "Virhe poistettaessa tiedostoja"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when the user's personal folder is
+#. * highlighted.
+#. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
+#: app/fileItem.js:147 app/fileItem.js:269
+msgid "Home"
+msgstr "Koti"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when the trash folder is
+#. * highlighted.
+#: app/fileItem.js:152
+#, fuzzy
+msgid "Trash"
+msgstr "Tyhjennä roskakori"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when an external drive is
+#. * highlighted. Example: if a USB stick named "my_portable" is highlighted, it will say "my_portable Drive".
+#. * It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:160
+msgid "${VisibleName} Drive"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when an external drive is
+#. * highlighted and selected. Example: if a USB stick named "my_portable" is highlighted and selected, it
+#. * will say "my_portable Drive Selected". It is mandatory to say the file name first, then the role, and
+#. * finally "Selected".
+#: app/fileItem.js:165
+msgid "${VisibleName} Drive Selected"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a folder is
+#. * highlighted. Example: if a folder named "things" is highlighted, it will say "things Folder".
+#. * It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:171
+msgid "${VisibleName} Folder"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a folder is
+#. * highlighted and selected. Example: if a folder named "things" is highlighted and selected, it will say
+#. * "things Folder Selected". It is mandatory to say the file name first, then the role, and finally "Selected".
+#: app/fileItem.js:175
+msgid "${VisibleName} Folder Selected"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a trusted desktop file is
+#. * highlighted. Example: if a desktop file named "My App" is highlighted and it is trusted, it will
+#. * say "My App Application". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:181
+msgid "${VisibleName} Application"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a trusted desktop file is
+#. * highlighted. Example: if a desktop file named "My App" is highlighted and selected and it is trusted, it will
+#. * say "My App Application Selected". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:185
+msgid "${VisibleName} Application Selected"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when a normal file is
+#. * highlighted. Example: if a file named "my_picture.jpg" is highlighted, it will say "my_picture.jpg File"
+#: app/fileItem.js:191
+msgid "${VisibleName} File"
+msgstr ""
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when a normal file is highlighted and
+#. * selected. Example: if a file named "my_picture.jpg" is highlighted and selected, it will say
+#. * "my_picture.jpg File Selected". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:195
+msgid "${VisibleName} File Selected"
+msgstr ""
+
+#: app/fileItem.js:364
+#, fuzzy
+msgid "Error while reading Desktop file"
+msgstr "Virhe poistettaessa tiedostoja"
+
+#: app/fileItem.js:421
+msgid "Broken Link"
+msgstr "Rikkinäinen linkki"
+
+#: app/fileItem.js:422
+msgid "Can not open this File because it is a Broken Symlink"
+msgstr "Tiedostoa ei voitu avata, sillä se on rikkinäinen linkki"
+
+#: app/fileItem.js:458
+#, fuzzy
+msgid "Can't open the file"
+msgstr "Käynnistä tiedosto"
+
+#: app/fileItem.js:486
+#, fuzzy
+msgid "Invalid Permissions on AppImage File"
+msgstr "Vialliset oikeudet työpöytätiedostossa"
+
+#: app/fileItem.js:487
+#, fuzzy
+msgid ""
+"This .appimage File has incorrect Permissions. Right Click to edit "
+"Properties, then:\n"
+msgstr ""
+"Tällä .desktop-tiedostolla on väärät oikeudet. Naksauta oikealla hiiren "
+"napilla ja valitse Ominaisuudet, sitten:\n"
+
+#: app/fileItem.js:489 app/fileItem.js:522
+msgid ""
+"\n"
+"<b>Set Permissions, in \"Others Access\", \"Read Only\" or \"None\"</b>"
+msgstr ""
+"\n"
+"<b>Aseta oikeudet kohdassa \"Muut oikeudet\", joko \"Vain luku\" tai \"Ei "
+"mikään\"</b>"
+
+#: app/fileItem.js:492 app/fileItem.js:525
+msgid ""
+"\n"
+"<b>Enable option, \"Allow Executing File as a Program\"</b>"
+msgstr ""
+"\n"
+"<b>Kytke päälle valinta \"Salli tiedoston suoritus ohjelmana\"</b>"
+
+#: app/fileItem.js:500
+#, fuzzy
+msgid ""
+"This .appimage file is not trusted, it can not be launched. To enable "
+"launching, right-click, then:\n"
+"\n"
+"<b>Enable \"Allow Launching\"</b>"
+msgstr ""
+"Tämä .desktop-tiedosto ei ole luotettu, ja sitä ei voi käynnistää. "
+"Salliakseksi käynnistämisen naksauta hiiren oikealla napilla, sitten:\n"
+"\n"
+"<b>Valitse \"Salli käynnistäminen\"</b>"
+
+#: app/fileItem.js:512
+msgid "Broken Desktop File"
+msgstr "Rikkinäinen työpöytätiedosto"
+
+#: app/fileItem.js:513
+msgid ""
+"This .desktop file has errors or points to a program without permissions. It "
+"can not be executed.\n"
+"\n"
+"\t<b>Edit the file to set the correct executable Program.</b>"
+msgstr ""
+"Tässä .desktop-tiedostossa on virheitä, tai se osoittaa ohjelmaan, jolla on "
+"puutteelliset oikeudet. Sitä ei voi suorittaa.\n"
+"\n"
+"\t<b>Muokkaa tiedostoa asettaaksesi oikea suoritettava ohjelma.<b>"
+
+#: app/fileItem.js:519
+msgid "Invalid Permissions on Desktop File"
+msgstr "Vialliset oikeudet työpöytätiedostossa"
+
+#: app/fileItem.js:520
+msgid ""
+"This .desktop File has incorrect Permissions. Right Click to edit "
+"Properties, then:\n"
+msgstr ""
+"Tällä .desktop-tiedostolla on väärät oikeudet. Naksauta oikealla hiiren "
+"napilla ja valitse Ominaisuudet, sitten:\n"
+
+#: app/fileItem.js:533
+msgid ""
+"This .desktop file is not trusted, it can not be launched. To enable "
+"launching, right-click, then:\n"
+"\n"
+"<b>Enable \"Allow Launching\"</b>"
+msgstr ""
+"Tämä .desktop-tiedosto ei ole luotettu, ja sitä ei voi käynnistää. "
+"Salliakseksi käynnistämisen naksauta hiiren oikealla napilla, sitten:\n"
+"\n"
+"<b>Valitse \"Salli käynnistäminen\"</b>"
+
+#: app/fileItem.js:731
+msgid "Failed to set execution flag"
+msgstr ""
+
+#: app/fileItem.js:750 app/fileItem.js:757
+msgid "Could not apply discrete GPU environment"
+msgstr ""
+
+#: app/fileItem.js:786
+msgid "Could not find discrete GPU data"
+msgstr ""
+
+#: app/fileItem.js:911 app/fileItem.js:945
+msgid "Failed to set metadata::trusted flag"
+msgstr ""
+
+#: app/fileItemMenu.js:233
+msgid "Open All..."
+msgstr "Avaa kaikki..."
+
+#: app/fileItemMenu.js:233
+msgid "Open"
+msgstr "Avaa"
+
+#: app/fileItemMenu.js:246
+msgid "Stack This Type"
+msgstr "Pinoa tämäntyyppiset"
+
+#: app/fileItemMenu.js:246
+msgid "Unstack This Type"
+msgstr "Älä pinoa tämäntyyppisiä"
+
+#: app/fileItemMenu.js:265
+msgid "Open All With Other Application..."
+msgstr "Avaa kaikki toisella sovelluksella..."
+
+#: app/fileItemMenu.js:265
+msgid "Open With Other Application"
+msgstr "Avaa toisella sovelluksella"
+
+#: app/fileItemMenu.js:272
+msgid "Launch using Dedicated Graphics Card"
+msgstr "Käynnistä erillisnäytönohjainta käyttäen"
+
+#: app/fileItemMenu.js:283
+msgid "Run as a program"
+msgstr "Suorita ohjelmana"
+
+#: app/fileItemMenu.js:298
+msgid "Cut"
+msgstr "Leikkaa"
+
+#: app/fileItemMenu.js:304
+msgid "Copy"
+msgstr "Kopioi"
+
+#: app/fileItemMenu.js:311
+msgid "Rename…"
+msgstr "Nimeä uudelleen…"
+
+#: app/fileItemMenu.js:321
+msgid "Move to Trash"
+msgstr "Siirrä roskakoriin"
+
+#: app/fileItemMenu.js:328
+msgid "Delete permanently"
+msgstr "Poista pysyvästi"
+
+#: app/fileItemMenu.js:337
+msgid "Don't Allow Launching"
+msgstr "Älä salli käynnistämistä"
+
+#: app/fileItemMenu.js:337
+msgid "Allow Launching"
+msgstr "Salli käynnistäminen"
+
+#: app/fileItemMenu.js:344
+msgid "Don't use sandboxing"
+msgstr ""
+
+#: app/fileItemMenu.js:344
+msgid "Use sandboxing if available"
+msgstr ""
+
+#: app/fileItemMenu.js:358
+msgid "Empty Trash"
+msgstr "Tyhjennä roskakori"
+
+#: app/fileItemMenu.js:370
+msgid "Eject"
+msgstr "Irrota"
+
+#: app/fileItemMenu.js:378
+msgid "Unmount"
+msgstr "Irrota osio"
+
+#: app/fileItemMenu.js:392 app/fileItemMenu.js:400
+msgid "Extract Here"
+msgstr "Pura tänne"
+
+#: app/fileItemMenu.js:406
+msgid "Extract To..."
+msgstr "Pura…"
+
+#: app/fileItemMenu.js:414
+msgid "Send to..."
+msgstr "Lähetä…"
+
+#: app/fileItemMenu.js:423
+#, fuzzy
+msgid "Compress {0} folder"
+msgid_plural "Compress {0} folders"
+msgstr[0] "Pakkaa {0} tiedosto"
+msgstr[1] "Pakkaa {0} tiedostoa"
+
+#: app/fileItemMenu.js:432
+msgid "Compress {0} file"
+msgid_plural "Compress {0} files"
+msgstr[0] "Pakkaa {0} tiedosto"
+msgstr[1] "Pakkaa {0} tiedostoa"
+
+#: app/fileItemMenu.js:442
+msgid "New Folder with {0} item"
+msgid_plural "New Folder with {0} items"
+msgstr[0] "Uusi kansio jossa {0} kohde"
+msgstr[1] "Uusi kansio jossa {0} kohdetta"
+
+#: app/fileItemMenu.js:453
+msgid "Common Properties"
+msgstr "Yhteiset ominaisuudet"
+
+#: app/fileItemMenu.js:453
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+#: app/fileItemMenu.js:461
+msgid "Show All in Files"
+msgstr "Näytä kaikki Tiedostot-sovelluksessa"
+
+#: app/fileItemMenu.js:461
+msgid "Show in Files"
+msgstr "Näytä tiedostonhallinnassa"
+
+#: app/fileItemMenu.js:469
+msgid "Open in Terminal"
+msgstr "Avaa päätteessä"
+
+#: app/fileItemMenu.js:546
+#, fuzzy
+msgid "No Extraction Folder"
+msgstr "Pura tänne"
+
+#: app/fileItemMenu.js:547
+msgid "Unable to extract File, extraction Folder Does not Exist"
+msgstr ""
+
+#: app/fileItemMenu.js:568
+msgid "Select Extract Destination"
+msgstr "Valitse purkamiskohde"
+
+#: app/fileItemMenu.js:576
+msgid "Select"
+msgstr "Valitse"
+
+#: app/fileItemMenu.js:617
+msgid "Can not email a Directory"
+msgstr "Kansiota ei voi lähettää sähköpostitse"
+
+#: app/fileItemMenu.js:618
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr "Valinta sisältää kansion, pakkaa kansio tiedostoksi ensin."
+
+#: app/notifyX11UnderWayland.js:34
+msgid "Desktop Icons NG is running under X11Wayland"
+msgstr ""
+
+#: app/notifyX11UnderWayland.js:35
+msgid ""
+"It seems that you have your system configured to force GTK to use X11. This "
+"works, but it's suboptimal. You should check your system configuration to "
+"fix this."
+msgstr ""
+
+#: app/notifyX11UnderWayland.js:36 app/showErrorPopup.js:36
+msgid "Close"
+msgstr "Sulje"
+
+#: app/notifyX11UnderWayland.js:44
+msgid "Don't show this message anymore."
+msgstr ""
+
+#: app/preferences.js:98
+msgid "Settings"
+msgstr "Asetukset"
+
+#: app/prefswindow.js:64
+msgid "Size for the desktop icons"
+msgstr "Työpöytäkuvakkeiden koko"
+
+#: app/prefswindow.js:64
+msgid "Tiny"
+msgstr "Erittäin pieni"
+
+#: app/prefswindow.js:64
+msgid "Small"
+msgstr "Pieni"
+
+#: app/prefswindow.js:64
+msgid "Standard"
+msgstr "Tavallinen"
+
+#: app/prefswindow.js:64
+msgid "Large"
+msgstr "Suuri"
+
+#: app/prefswindow.js:65
+msgid "Show the personal folder in the desktop"
+msgstr "Näytä kotikansio työpöydällä"
+
+#: app/prefswindow.js:66
+msgid "Show the trash icon in the desktop"
+msgstr "Näytä roskakorin kuvake työpöydällä"
+
+#: app/prefswindow.js:67 schemas/org.gnome.shell.extensions.ding.gschema.xml:45
+msgid "Show external drives in the desktop"
+msgstr "Näytä erilliset tallennusvälineet työpöydällä"
+
+#: app/prefswindow.js:68 schemas/org.gnome.shell.extensions.ding.gschema.xml:50
+msgid "Show network drives in the desktop"
+msgstr "Näytä verkkoasemat työpöydällä"
+
+#: app/prefswindow.js:71
+msgid "New icons alignment"
+msgstr "Uusien kuvakkeiden asettelu"
+
+#: app/prefswindow.js:73
+msgid "Top-left corner"
+msgstr "Vasen yläkulma"
+
+#: app/prefswindow.js:74
+msgid "Top-right corner"
+msgstr "Oikea yläkulma"
+
+#: app/prefswindow.js:75
+msgid "Bottom-left corner"
+msgstr "Vasen alakulma"
+
+#: app/prefswindow.js:76
+msgid "Bottom-right corner"
+msgstr "Oikea alakulma"
+
+#: app/prefswindow.js:78 schemas/org.gnome.shell.extensions.ding.gschema.xml:55
+msgid "Add new drives to the opposite side of the screen"
+msgstr "Lisää uudet tallennusvälineet näytön toiselle puolelle"
+
+#: app/prefswindow.js:79
+msgid "Highlight the drop place during Drag'n'Drop"
+msgstr "Korosta pudotuspaikka vedettäessä ja pudotettaessa"
+
+#: app/prefswindow.js:80 schemas/org.gnome.shell.extensions.ding.gschema.xml:90
+msgid "Use Nemo to open folders"
+msgstr "Käytä Nemoa kansioiden avaamiseen"
+
+#: app/prefswindow.js:82
+msgid "Add an emblem to soft links"
+msgstr "Merkitse linkit tiedostoihin symbolilla"
+
+#: app/prefswindow.js:84
+msgid "Use dark text in icon labels"
+msgstr "Käytä tummaa tekstiä kuvakkeiden selitteissä"
+
+#: app/prefswindow.js:91
+msgid "Settings shared with Nautilus"
+msgstr "Jaa asetukset Nautilus-tiedostonhallinnan kanssa"
+
+#: app/prefswindow.js:113
+msgid "Click type for open files"
+msgstr "Napsautustapa tiedostojen avaamiselle"
+
+#: app/prefswindow.js:113
+msgid "Single click"
+msgstr "Yksi napsautus"
+
+#: app/prefswindow.js:113
+msgid "Double click"
+msgstr "Kaksoisnapsautus"
+
+#: app/prefswindow.js:114
+msgid "Show hidden files"
+msgstr "Näytä piilotiedostot"
+
+#: app/prefswindow.js:115
+msgid "Show a context menu item to delete permanently"
+msgstr "Näytä valikkokohde pysyvästi poistamiselle"
+
+#: app/prefswindow.js:120
+msgid "Action to do when launching a program from the desktop"
+msgstr "Toiminta käynnistettäessä ohjelmaa työpöydältä"
+
+#: app/prefswindow.js:121
+msgid "Display the content of the file"
+msgstr "Näytä tiedoston sisältö"
+
+#: app/prefswindow.js:122
+msgid "Launch the file"
+msgstr "Käynnistä tiedosto"
+
+#: app/prefswindow.js:123
+msgid "Ask what to do"
+msgstr "Kysy mitä tehdään"
+
+#: app/prefswindow.js:129
+msgid "Show image thumbnails"
+msgstr "Näytä pienoiskuvat"
+
+#: app/prefswindow.js:130
+msgid "Never"
+msgstr "Ei koskaan"
+
+#: app/prefswindow.js:131
+msgid "Local files only"
+msgstr "Vain paikalliset tiedostot"
+
+#: app/prefswindow.js:132
+msgid "Always"
+msgstr "Aina"
+
+#: app/thumbnails.js:38
+msgid "GnomeDesktop-4.0 GIR file not found"
+msgstr ""
+
+#: app/thumbnails.js:39
+msgid ""
+"GnomeDesktop-4.0.gir file is missing. Please, install the required package "
+"in your system."
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
+msgid "Icon size"
+msgstr "Kuvakekoko"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:26
+msgid "Set the size for the desktop icons."
+msgstr "Aseta työpöytäkuvakkeiden koko."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:30
+msgid "Show personal folder"
+msgstr "Näytä kotikansio"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:31
+msgid "Show the personal folder in the desktop."
+msgstr "Näytä kotikansio työpöydällä."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:35
+msgid "Show trash icon"
+msgstr "Näytä roskakorin kuvake"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:36
+msgid "Show the trash icon in the desktop."
+msgstr "Näytä roskakorin kuvake työpöydällä."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:40
+msgid "New icons start corner"
+msgstr "Uusien kuvakkeiden aloituskulma"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
+msgid "Set the corner from where the icons will start to be placed."
+msgstr "Aseta kulma jonne kuvakkeet sijoitetaan."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
+msgid "Show the disk drives connected to the computer."
+msgstr "Näytä tietokoneeseen liitetyt tallennusvälineet."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:51
+msgid "Show mounted network volumes in the desktop."
+msgstr "Näytä liitetyt verkkoasemat työpöydällä."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:56
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+"Näytä lisätyt tallennusvälineet ja asemat työpöydän vastakkaisella puolella."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
+msgid "Shows a rectangle in the destination place during DnD"
+msgstr "Näyttää suorakulmio kohteen kohdalla vetämisen ja pudottamisen aikana"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:61
+msgid ""
+"When doing a Drag'n'Drop operation, marks the place in the grid where the "
+"icon will be put with a semitransparent rectangle."
+msgstr ""
+"Merkitsee kuvakkeen tulevan paikan ruudukossa osittain läpinäkyvällä "
+"suorakulmiolla vetämisen ja pudottamisen aikana."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
+msgid "Sort Special Folders - Home/Trash Drives."
+msgstr "Järjestä erikoishakemistot - Koti/Roskakori/Asemat."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
+msgid ""
+"When arranging Icons on desktop, to sort and change the position of the "
+"Home, Trash and mounted Network or External Drives"
+msgstr ""
+"Kodin, Roskakorin ja liitettyjen verkko- ja ulkoisten asemien sijainnin "
+"muuttamiseksi järjestäessä kuvakkeita työpöydällä"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
+msgid "Keep Icons Arranged"
+msgstr "Pidä kuvakkeet järjestettynä"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
+msgid "Always keep Icons Arranged by the last arranged order"
+msgstr "Pidä kuvakkeet aina viimeksi valitun järjestyksen mukaisesti"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
+msgid "Arrange Order"
+msgstr "Kuvakkeiden järjestys"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
+msgid "Icons Arranged by this property"
+msgstr "Kuvakkeet järjestetään tämän ominaisuuden mukaan"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:80
+msgid "Keep Icons Stacked"
+msgstr "Pidä kuvakkeet pinottuina"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:81
+msgid "Always keep Icons Stacked, Similar types are grouped"
+msgstr "Pidä aina kuvakkeet pinottuina, samantyyppiset ryhmissään"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:85
+msgid "Type of Files to not Stack"
+msgstr "Tiedostotyypit, joita ei pinota"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:86
+msgid "An Array of strings types, Don't Stack these types of files"
+msgstr "Taulukko merkkijonoja tiedostotyypeistä, joita ei pinota"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:91
+msgid "Use Nemo instead of Nautilus to open folders."
+msgstr "Käytä Nemoa Nautiluksen sijaan kansioiden avaamiseen."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:95
+msgid "Add an emblem to links"
+msgstr "Merkitse tiedostolinkit symbolilla"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:96
+msgid "Add an emblem to allow to identify soft links."
+msgstr "Lisää symboli tiedostolinkkien tunnistamisen helpottamiseksi."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:100
+msgid "Use black for label text"
+msgstr "Käytä mustaa seliteteksteissä"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:101
+msgid ""
+"Paint the label text in black instead of white. Useful when using light "
+"backgrounds."
+msgstr ""
+"Piirrä seliteteksti mustalla valkoisen sijaan. Hyödyllinen vaaleita "
+"taustakuvia käyttäessä."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:105
+msgid "Show a popup if running on X11Wayland"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:106
+msgid ""
+"Whether DING should show a popup if it is running on X11Wayland, or the user "
+"decided to not show it anymore."
+msgstr ""
+
+#~ msgid "Folder name"
+#~ msgstr "Kansion nimi"
+
+#~ msgid "New Document"
+#~ msgstr "Uusi asiakirja"
+
+#~ msgid "Paste"
+#~ msgstr "Liitä"
+
+#~ msgid "Undo"
+#~ msgstr "Kumoa"
+
+#~ msgid "Redo"
+#~ msgstr "Tee uudelleen"
+
+#~ msgid "Select All"
+#~ msgstr "Valitse kaikki"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "Näytä työpöytä tiedostonhallinnassa"
+
+#~ msgid "Change Background…"
+#~ msgstr "Vaihda taustakuvaa…"
+
+#~ msgid "Desktop Icons Settings"
+#~ msgstr "Työpöytäkuvakkeiden asetukset"
+
+#~ msgid "Display Settings"
+#~ msgstr "Näytön asetukset"
+
+#~ msgid "Arrange Icons"
+#~ msgstr "Järjestä kuvakkeet"
+
+#~ msgid "Arrange By..."
+#~ msgstr "Järjestä..."
+
+#~ msgid "Keep Arranged..."
+#~ msgstr "Pidä järjestettynä..."
+
+#~ msgid "Keep Stacked by type..."
+#~ msgstr "Pidä pinottuna tyypin mukaan..."
+
+#~ msgid "Sort Home/Drives/Trash..."
+#~ msgstr "Järjestä koti/asemat/roskakori..."
+
+#~ msgid "Sort by Name"
+#~ msgstr "Järjestä nimen mukaan"
+
+#~ msgid "Sort by Name Descending"
+#~ msgstr "Järjestä nimen mukaan laskevasti"
+
+#~ msgid "Sort by Modified Time"
+#~ msgstr "Järjestä muokkausajan mukaan"
+
+#~ msgid "Sort by Type"
+#~ msgstr "Järjestä tyypin mukaan"
+
+#~ msgid "Sort by Size"
+#~ msgstr "Järjestä koon mukaan"
+
+#, fuzzy
+#~ msgid "Home Selected"
+#~ msgstr "Valitse"
+
+#, fuzzy
+#~ msgid "Trash Selected"
+#~ msgstr "Valitse"
+
+#~ msgid "Scripts"
+#~ msgstr "Komentosarjat"
+
+#, fuzzy
+#~ msgid "Folder"
+#~ msgstr "Uusi kansio"
+
+#, fuzzy
+#~ msgid "Desktop icons"
+#~ msgstr "Työpöytäkuvakkeiden asetukset"
+
+#~ msgid ""
+#~ "To configure Desktop Icons NG, do right-click in the desktop and choose "
+#~ "the last item: 'Desktop Icons settings'"
+#~ msgstr ""
+#~ "Muuttaaksesi työpöytäkuvakkeiden asetuksia, napsauta työpöytää hiiren "
+#~ "oikealla painikkeella ja valitse viimeinen kohde ”Työpöytäkuvakkeiden "
+#~ "asetukset”"
+
+#~ msgid "Do you want to run “{0}”, or display its contents?"
+#~ msgstr "Haluatko suorittaa tiedoston “{0}” vai näyttää sen sisällön?"
+
+#~ msgid "“{0}” is an executable text file."
+#~ msgstr "“{0}” on suoritettava oleva tekstitiedosto."
+
+#~ msgid "Execute in a terminal"
+#~ msgstr "Suorita päätteessä"
+
+#~ msgid "Show"
+#~ msgstr "Näytä"
+
+#~ msgid "Execute"
+#~ msgstr "Suorita"
+
+#~ msgid "Delete"
+#~ msgstr "Poista"
+
+#~ msgid "Are you sure you want to permanently delete these items?"
+#~ msgstr "Haluatko varmasti poistaa nämä kohteet pysyvästi?"
+
+#~ msgid "If you delete an item, it will be permanently lost."
+#~ msgstr "Jos poistat kohteen, se häviää pysyvästi."

@@ -1,0 +1,22 @@
+{
+  "id": "ding.mac.calendar",
+  "name": "日历",
+  "description": "可翻页的中国农历、传统节日和法定节假日日历",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 6,
+  "defaultWidth": 390,
+  "defaultHeight": 440,
+  "minimumWidth": 300,
+  "minimumHeight": 340,
+  "defaultConfig": {
+    "showLunar": true,
+    "showFestivals": true,
+    "showStatutory": true,
+    "showWorkdays": true,
+    "weekStartsMonday": true,
+    "opacity": 1,
+    "holidayCache": null,
+    "holidayLastUpdate": ""
+  }
+}

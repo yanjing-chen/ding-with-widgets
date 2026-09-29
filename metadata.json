@@ -1,0 +1,12 @@
+{
+    "description": "Desktop Icons NG with movable, persistent, translucent desktop widgets.",
+    "name": "DING with Widgets",
+    "shell-version": ["50", "51"],
+    "uuid": "ding-with-widgets@yanjing_chen.qq.com",
+    "settings-schema": "org.gnome.shell.extensions.dingwithwidgets",
+    "gettext-domain": "ding",
+    "session-modes": ["user"],
+    "version": 23,
+    "version-name": "0.7.16",
+    "url": "https://github.com/yanjing-chen/ding-with-widgets"
+}

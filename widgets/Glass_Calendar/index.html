@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css">
+  <title>日历</title>
+</head>
+<body>
+  <main id="calendar" class="calendar glass-card">
+    <header>
+      <div class="calendar-title">
+        <span id="weekday" class="eyebrow"></span>
+        <strong id="month"></strong>
+      </div>
+      <nav aria-label="月份导航">
+        <button id="previous" type="button" title="上个月" aria-label="上个月">‹</button>
+        <button id="today-button" type="button">今天</button>
+        <button id="next" type="button" title="下个月" aria-label="下个月">›</button>
+        <button id="settings-button" type="button" title="日历设置" aria-label="日历设置">⚙</button>
+      </nav>
+    </header>
+    <div class="divider"></div>
+    <div id="week" class="grid week"></div>
+    <div id="days" class="grid days"></div>
+    <section id="day-detail" class="day-detail" hidden></section>
+    <p id="calendar-status" class="calendar-status"></p>
+
+    <section id="settings" class="settings" hidden>
+      <div class="settings-head">
+        <div><span class="eyebrow">日历</span><strong>显示设置</strong></div>
+        <button id="close-settings" type="button" title="完成" aria-label="完成">✓</button>
+      </div>
+      <label class="switch-row"><span>显示农历</span><input id="show-lunar" type="checkbox"></label>
+      <label class="switch-row"><span>显示传统节日与节气</span><input id="show-festivals" type="checkbox"></label>
+      <label class="switch-row"><span>显示法定节假日</span><input id="show-statutory" type="checkbox"></label>
+      <label class="switch-row"><span>显示调休补班</span><input id="show-workdays" type="checkbox"></label>
+      <label class="switch-row"><span>每周从星期一开始</span><input id="week-monday" type="checkbox"></label>
+      <label class="setting-slider">
+        <span>卡片透明度</span><output id="opacity-value">100%</output>
+        <input id="opacity" type="range" min="35" max="100" step="5">
+      </label>
+      <div class="holiday-update">
+        <div><strong>中国大陆节假日</strong><span id="last-update">尚未更新</span></div>
+        <button id="update-holidays" type="button">更新数据</button>
+      </div>
+      <p id="update-status" class="update-status" role="status"></p>
+    </section>
+  </main>
+  <script src="calendar.js"></script>
+</body>
+</html>

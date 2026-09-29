@@ -1,0 +1,23 @@
+{
+  "id": "ding.mac.sticky-note",
+  "name": "便笺",
+  "description": "支持富文本、待办清单、配色和自动保存",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 8,
+  "defaultWidth": 380,
+  "defaultHeight": 330,
+  "minimumWidth": 260,
+  "minimumHeight": 210,
+  "defaultConfig": {
+    "contentHtml": "",
+    "text": "",
+    "fontSize": 18,
+    "titleFontSize": 15,
+    "fontFamily": "-apple-system, BlinkMacSystemFont, Noto Sans CJK SC, Noto Sans, sans-serif",
+    "noteColor": "yellow",
+    "noteTitle": "",
+    "opacity": 1,
+    "updatedAt": ""
+  }
+}

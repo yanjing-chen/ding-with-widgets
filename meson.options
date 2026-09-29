@@ -1,0 +1,2 @@
+option('extension_uuid', type : 'string', value : 'ding-with-widgets@yanjing_chen.qq.com', description : 'The extension UUID.')
+option('extension_name', type : 'string', value : 'DING with Widgets', description : 'The extension display name.')

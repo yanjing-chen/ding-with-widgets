@@ -1,0 +1,24 @@
+{
+  "id": "ding.mac.weather",
+  "name": "天气",
+  "description": "显示当前天气与未来四天预报，可搜索并保存城市",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 4,
+  "defaultWidth": 420,
+  "defaultHeight": 310,
+  "minimumWidth": 300,
+  "minimumHeight": 240,
+  "defaultConfig": {
+    "opacity": 1,
+    "location": {
+      "name": "上海",
+      "admin1": "上海",
+      "country": "中国",
+      "latitude": 31.2304,
+      "longitude": 121.4737,
+      "timezone": "Asia/Shanghai"
+    },
+    "cache": null
+  }
+}

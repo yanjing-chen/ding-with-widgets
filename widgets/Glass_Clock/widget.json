@@ -1,0 +1,21 @@
+{
+  "id": "ding.mac.clock",
+  "name": "世界时钟",
+  "description": "联网搜索城市并同时显示多个地点的当地时间",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 7,
+  "defaultWidth": 420,
+  "defaultHeight": 330,
+  "minimumWidth": 280,
+  "minimumHeight": 220,
+  "defaultConfig": {
+    "hour12": false,
+    "opacity": 1,
+    "locations": [
+      {"label": "上海", "timeZone": "Asia/Shanghai"},
+      {"label": "阿姆斯特丹", "timeZone": "Europe/Amsterdam"},
+      {"label": "纽约", "timeZone": "America/New_York"}
+    ]
+  }
+}

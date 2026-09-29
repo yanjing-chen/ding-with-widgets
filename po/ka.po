@@ -1,0 +1,951 @@
+# Georgian translation for ding
+# Copyright (c) 2025 ding's authors
+# This file is distributed under the same license as the ding package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ding\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-05 08:41+0200\n"
+"PO-Revision-Date: 2025-12-13 08:37+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#: app/askRenamePopup.js:54
+#, fuzzy
+msgid "Rename folder"
+msgstr "სახელის გადარქმევა"
+
+#: app/askRenamePopup.js:54
+#, fuzzy
+msgid "Rename file"
+msgstr "სახელის გადარქმევა"
+
+#: app/askRenamePopup.js:64
+#, fuzzy
+msgid "New filename"
+msgstr "ფაილის სახელი"
+
+#: app/askRenamePopup.js:69 app/autoAr.js:307 app/autoAr.js:559
+#: app/desktopManager.js:1036
+msgid "OK"
+msgstr "დიახ"
+
+#: app/askRenamePopup.js:69
+msgid "Rename"
+msgstr "სახელის გადარქმევა"
+
+#: app/autoAr.js:76
+msgid "AutoAr is not installed"
+msgstr "AutoAr დაყენებული არაა"
+
+#: app/autoAr.js:77
+msgid ""
+"To be able to work with compressed files, install file-roller and/or gir-1.2-"
+"gnomeAutoAr"
+msgstr ""
+"იმისათვის, რომ გქონდეთ საშუალება, იმუშაოთ შეკუმშულ ფაილებთან, დააყენეთ file-"
+"roller ან/და gir-1.2-gnomeAutoAr"
+
+#: app/autoAr.js:216
+msgid "Extracting files"
+msgstr "ფაილების ამოღება"
+
+#: app/autoAr.js:233
+msgid "Compressing files"
+msgstr "ფაილების შეკუმშვა"
+
+#: app/autoAr.js:299 app/autoAr.js:566 app/desktopManager.js:1039
+#: app/fileItemMenu.js:575
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: app/autoAr.js:320 app/autoAr.js:635
+msgid "Enter a password here"
+msgstr "შეიყვანეთ პაროლი აქ"
+
+#: app/autoAr.js:353
+msgid "Removing partial file '${outputFile}'"
+msgstr "ნაწილობრივი ფაილის '${outputFile}' წაშლა"
+
+#: app/autoAr.js:372
+msgid "Creating destination folder"
+msgstr "იქმნება სამიზნე საქარალდე"
+
+#: app/autoAr.js:404
+msgid "Extracting files into '${outputPath}'"
+msgstr "მიმდინარეობს ფაილების ამოღება საქაღალდეში '${outputPath}'"
+
+#: app/autoAr.js:436
+msgid "Extraction completed"
+msgstr "ამოღება დასულდა"
+
+#: app/autoAr.js:437
+msgid "Extracting '${fullPathFile}' has been completed."
+msgstr "არქივის '${fullPathFile}' გაშლა დასრულდა."
+
+#: app/autoAr.js:443
+msgid "Extraction cancelled"
+msgstr "გაშლა გაუქმდა"
+
+#: app/autoAr.js:444
+msgid "Extracting '${fullPathFile}' has been cancelled by the user."
+msgstr "'${fullPathFile}'-ის გაშლა გაუქმდა მომხმარებლის მიერ."
+
+#: app/autoAr.js:454
+msgid "Passphrase required for ${filename}"
+msgstr "${filename}-ს საკვანძო ფრაზა სჭირდება"
+
+#: app/autoAr.js:457
+msgid "Error during extraction"
+msgstr "შეცდომა გაშლისას"
+
+#: app/autoAr.js:486
+msgid "Compressing files into '${outputFile}'"
+msgstr "ფაილების შეკუმშვა არქივში '${outputFile}'"
+
+#: app/autoAr.js:499
+msgid "Compression completed"
+msgstr "შეკუმშვა დასრულდა"
+
+#: app/autoAr.js:500
+msgid "Compressing files into '${outputFile}' has been completed."
+msgstr "ფაილების არქივში '${outputFile}' შეკუმშვა დასრულდა."
+
+#: app/autoAr.js:504 app/autoAr.js:511
+msgid "Cancelled compression"
+msgstr "შეკუმშვა გაუქმდა"
+
+#: app/autoAr.js:505
+msgid "The output file '${outputFile}' already exists."
+msgstr "გამოტანის ფაილი '${outputFile}' უკვე არსებობს."
+
+#: app/autoAr.js:512
+msgid "Compressing files into '${outputFile}' has been cancelled by the user."
+msgstr "ფაილების შეკუმშვა არქივში '${outputFile}' გაუქმდა მომხმარებლის მიერ."
+
+#: app/autoAr.js:515
+msgid "Error during compression"
+msgstr "შეკუმშვის შეცდომა"
+
+#: app/autoAr.js:548
+msgid "Create archive"
+msgstr "არქივის შექმნა"
+
+#: app/autoAr.js:592
+msgid "Archive name"
+msgstr "არქივის სახელი"
+
+#: app/autoAr.js:630
+msgid "Password"
+msgstr "პაროლი"
+
+#: app/autoAr.js:719
+msgid "Compatible with all operating systems."
+msgstr "თავსებადია ყველა ოპერაციულ სისტემასთან."
+
+#: app/autoAr.js:725
+msgid "Password protected .zip, must be installed on Windows and Mac."
+msgstr "პაროლით დაცული .zip. Windows-ზე და Mac-ზე დაყენებაა საჭირო."
+
+#: app/autoAr.js:731
+msgid "Smaller archives but Linux and Mac only."
+msgstr "არქივები უფრო პატარაა, მაგრამ მხოლოდ Linux-ზე და Mac-ზე მუშაობს."
+
+#: app/autoAr.js:737
+msgid "Smaller archives but must be installed on Windows and Mac."
+msgstr "უფრო პატარა არქივი, მაგრამ Windows-ზე და Mac-ზე დაყენება სჭირდება."
+
+#: app/dbusUtils.js:73
+msgid "\"${programName}\" is needed for Desktop Icons"
+msgstr "სამუშაო მაგიდის ხატულებისთვის საჭიროა \"${programName}\""
+
+#: app/dbusUtils.js:74
+msgid ""
+"For this functionality to work in Desktop Icons, you must install \"$"
+"{programName}\" in your system."
+msgstr ""
+"იმისათვის, რომ ამ ფუნქციონალმა .desktop ფაილების ხატულებში იმუშაოს, "
+"სისტემაში უნდა გქონდეთ დაყენებული პროგრამა \"${programName}"
+
+#: app/desktopIconsUtil.js:170
+msgid "Command not found"
+msgstr "ბრძანება ნაპოვნი არაა"
+
+#: app/desktopManager.js:279
+msgid "Nautilus File Manager not found"
+msgstr "ფაილების მმართველი Nautilus აღმოჩენილი არაა"
+
+#: app/desktopManager.js:280
+msgid "The Nautilus File Manager is mandatory to work with Desktop Icons NG."
+msgstr ""
+"ფაილების მმართველი Nautilus აუცილებელია Desktop Icons NG-ისთან სამუშაოდ."
+
+#: app/desktopManager.js:935
+msgid "Clear Current Selection before New Search"
+msgstr "მიმდინარე მონიშნულის გასუფთავება ახალ ძებნამდე"
+
+#: app/desktopManager.js:1026
+msgid "Find Files on Desktop"
+msgstr "ფაილების ძებნა სამუშაო მაგიდაზე"
+
+#: app/desktopManager.js:1713
+msgid "New Folder"
+msgstr "ახალი საქაღალდე"
+
+#: app/desktopManager.js:1726
+msgid "Folder Creation Failed"
+msgstr "საქაღალდის შექმნის შეცდომა"
+
+#: app/desktopManager.js:1727
+msgid "Error while trying to create a Folder"
+msgstr "შეცდომა საქაღალდის შექმნის მცდელობისას"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when the user's personal folder is
+#. * highlighted.
+#. TRANSLATORS: "Home" is the text that will be shown in the user's personal folder
+#: app/fileItem.js:147 app/fileItem.js:269
+msgid "Home"
+msgstr "საწყისი"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when the trash folder is
+#. * highlighted.
+#: app/fileItem.js:152
+msgid "Trash"
+msgstr "ნაგვის ყუთი"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when an external drive is
+#. * highlighted. Example: if a USB stick named "my_portable" is highlighted, it will say "my_portable Drive".
+#. * It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:160
+msgid "${VisibleName} Drive"
+msgstr "${VisibleName} დისკი"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when an external drive is
+#. * highlighted and selected. Example: if a USB stick named "my_portable" is highlighted and selected, it
+#. * will say "my_portable Drive Selected". It is mandatory to say the file name first, then the role, and
+#. * finally "Selected".
+#: app/fileItem.js:165
+msgid "${VisibleName} Drive Selected"
+msgstr "${VisibleName} დისკი მონიშნულია"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a folder is
+#. * highlighted. Example: if a folder named "things" is highlighted, it will say "things Folder".
+#. * It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:171
+msgid "${VisibleName} Folder"
+msgstr "${VisibleName} საქაღალდე"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a folder is
+#. * highlighted and selected. Example: if a folder named "things" is highlighted and selected, it will say
+#. * "things Folder Selected". It is mandatory to say the file name first, then the role, and finally "Selected".
+#: app/fileItem.js:175
+msgid "${VisibleName} Folder Selected"
+msgstr "${VisibleName} საქაღალდე მონიშნულია"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a trusted desktop file is
+#. * highlighted. Example: if a desktop file named "My App" is highlighted and it is trusted, it will
+#. * say "My App Application". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:181
+msgid "${VisibleName} Application"
+msgstr "${VisibleName} აპლიკაცია"
+
+#. * TRANSLATORS: when using a screen reader, this is the role used when a trusted desktop file is
+#. * highlighted. Example: if a desktop file named "My App" is highlighted and selected and it is trusted, it will
+#. * say "My App Application Selected". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:185
+msgid "${VisibleName} Application Selected"
+msgstr "${VisibleName} აპლიკაცია მონიშნულია"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when a normal file is
+#. * highlighted. Example: if a file named "my_picture.jpg" is highlighted, it will say "my_picture.jpg File"
+#: app/fileItem.js:191
+msgid "${VisibleName} File"
+msgstr "${VisibleName} ფაილი"
+
+#. * TRANSLATORS: when using a screen reader, this is the text read when a normal file is highlighted and
+#. * selected. Example: if a file named "my_picture.jpg" is highlighted and selected, it will say
+#. * "my_picture.jpg File Selected". It is mandatory to say the file name first and the role after.
+#: app/fileItem.js:195
+msgid "${VisibleName} File Selected"
+msgstr "${VisibleName} ფაილი მონიშნულია"
+
+#: app/fileItem.js:364
+msgid "Error while reading Desktop file"
+msgstr "შეცდომა .desktop ფაილის კითხვისას"
+
+#: app/fileItem.js:421
+msgid "Broken Link"
+msgstr "გაფუჭებული ბმული"
+
+#: app/fileItem.js:422
+msgid "Can not open this File because it is a Broken Symlink"
+msgstr "ამ ფაილის გახსნა შეუძლებელია, რადგან ის გაფუჭებულ სიმბმულს წარმოადგენს"
+
+#: app/fileItem.js:458
+msgid "Can't open the file"
+msgstr "ფაილის გახსნა შეუძლებელია"
+
+#: app/fileItem.js:486
+#, fuzzy
+msgid "Invalid Permissions on AppImage File"
+msgstr "არასწორი წვდომები .desktop ფაილზე"
+
+#: app/fileItem.js:487
+#, fuzzy
+msgid ""
+"This .appimage File has incorrect Permissions. Right Click to edit "
+"Properties, then:\n"
+msgstr ""
+"ამ .desktop ფაილის წვდომები არასწორია. დააწკაპუნეთ მარჯვენა ღილაკით, რომ "
+"ჩაასწოროთ თვისებები. შემდეგ:\n"
+
+#: app/fileItem.js:489 app/fileItem.js:522
+msgid ""
+"\n"
+"<b>Set Permissions, in \"Others Access\", \"Read Only\" or \"None\"</b>"
+msgstr ""
+"\n"
+"<b>დააყენეთ წვდომები \"სხვების წვდომა\", \"მხოლოდ წაკითხვადი\" ან "
+"\"არაფერი\"</b>"
+
+#: app/fileItem.js:492 app/fileItem.js:525
+msgid ""
+"\n"
+"<b>Enable option, \"Allow Executing File as a Program\"</b>"
+msgstr ""
+"\n"
+"<b>ჩართეთ პარამეტრი \"ფაილის პროგრამის სახით გაშვება\"</b>"
+
+#: app/fileItem.js:500
+#, fuzzy
+msgid ""
+"This .appimage file is not trusted, it can not be launched. To enable "
+"launching, right-click, then:\n"
+"\n"
+"<b>Enable \"Allow Launching\"</b>"
+msgstr ""
+"ეს .desktop ფაილი სანდო არაა და მას ვერ გაუშვებთ. გაშვების დასაშვებად, "
+"მარჯვენა წკაპი ზედ, შემდეგ კი:\n"
+"\n"
+"<b>ჩართეთ 'გაშვების დაშვება'</b>"
+
+#: app/fileItem.js:512
+msgid "Broken Desktop File"
+msgstr "გაფუჭებული Desktop ფაილი"
+
+#: app/fileItem.js:513
+msgid ""
+"This .desktop file has errors or points to a program without permissions. It "
+"can not be executed.\n"
+"\n"
+"\t<b>Edit the file to set the correct executable Program.</b>"
+msgstr ""
+"ეს .desktop ფაილი შეიცავს შეცდომებს, ან მიუთითებს პროგრამას, რომელსაც "
+"წვდომები არ აქვს. მისი შესრულება შეუძლებელია.\n"
+"\n"
+"\t<b>ჩაასწორეთ ფაილი და დააყენეთ სწორი შესრულებადი პროგრამა.</b>"
+
+#: app/fileItem.js:519
+msgid "Invalid Permissions on Desktop File"
+msgstr "არასწორი წვდომები .desktop ფაილზე"
+
+#: app/fileItem.js:520
+msgid ""
+"This .desktop File has incorrect Permissions. Right Click to edit "
+"Properties, then:\n"
+msgstr ""
+"ამ .desktop ფაილის წვდომები არასწორია. დააწკაპუნეთ მარჯვენა ღილაკით, რომ "
+"ჩაასწოროთ თვისებები. შემდეგ:\n"
+
+#: app/fileItem.js:533
+msgid ""
+"This .desktop file is not trusted, it can not be launched. To enable "
+"launching, right-click, then:\n"
+"\n"
+"<b>Enable \"Allow Launching\"</b>"
+msgstr ""
+"ეს .desktop ფაილი სანდო არაა და მას ვერ გაუშვებთ. გაშვების დასაშვებად, "
+"მარჯვენა წკაპი ზედ, შემდეგ კი:\n"
+"\n"
+"<b>ჩართეთ 'გაშვების დაშვება'</b>"
+
+#: app/fileItem.js:731
+msgid "Failed to set execution flag"
+msgstr "გაშვების ალმის დაყენება ჩავარდა"
+
+#: app/fileItem.js:750 app/fileItem.js:757
+msgid "Could not apply discrete GPU environment"
+msgstr "დისკრეტული GPU-ის გარემოს გადატარება შეუძლებელია"
+
+#: app/fileItem.js:786
+msgid "Could not find discrete GPU data"
+msgstr "დისკრეტული GPU-ის მონაცემების პოვნის შეცდომა"
+
+#: app/fileItem.js:911 app/fileItem.js:945
+msgid "Failed to set metadata::trusted flag"
+msgstr "ალმის metadata::trusted დაყენება ჩავარდა"
+
+#: app/fileItemMenu.js:233
+msgid "Open All..."
+msgstr "ყველას გახსნა..."
+
+#: app/fileItemMenu.js:233
+msgid "Open"
+msgstr "გახსნა"
+
+#: app/fileItemMenu.js:246
+msgid "Stack This Type"
+msgstr "ამ ტიპის დასტის შექმნა"
+
+#: app/fileItemMenu.js:246
+msgid "Unstack This Type"
+msgstr "ამ ტიპის დასტის დაშლა"
+
+#: app/fileItemMenu.js:265
+msgid "Open All With Other Application..."
+msgstr "ყველას გახსნა სხვა აპლიკაციით...."
+
+#: app/fileItemMenu.js:265
+msgid "Open With Other Application"
+msgstr "სხვა პროგრამით გახსნა"
+
+#: app/fileItemMenu.js:272
+msgid "Launch using Dedicated Graphics Card"
+msgstr "დისკრეტული ვიდეობარათით გაშვება"
+
+#: app/fileItemMenu.js:283
+msgid "Run as a program"
+msgstr "გაშვება პროგრამის სახით"
+
+#: app/fileItemMenu.js:298
+msgid "Cut"
+msgstr "ამოჭრა"
+
+#: app/fileItemMenu.js:304
+msgid "Copy"
+msgstr "კოპირება"
+
+#: app/fileItemMenu.js:311
+msgid "Rename…"
+msgstr "სახელის გადარქმევა…"
+
+#: app/fileItemMenu.js:321
+msgid "Move to Trash"
+msgstr "ნაგვის ყუთში გადატანა"
+
+#: app/fileItemMenu.js:328
+msgid "Delete permanently"
+msgstr "სამუდამოდ წაშლა"
+
+#: app/fileItemMenu.js:337
+msgid "Don't Allow Launching"
+msgstr "გაშვების არდაშვება"
+
+#: app/fileItemMenu.js:337
+msgid "Allow Launching"
+msgstr "გაშვების ნების დართვა"
+
+#: app/fileItemMenu.js:344
+msgid "Don't use sandboxing"
+msgstr ""
+
+#: app/fileItemMenu.js:344
+msgid "Use sandboxing if available"
+msgstr ""
+
+#: app/fileItemMenu.js:358
+msgid "Empty Trash"
+msgstr "ნაგვის ყუთის დაცარიელება"
+
+#: app/fileItemMenu.js:370
+msgid "Eject"
+msgstr "გამოღება"
+
+#: app/fileItemMenu.js:378
+msgid "Unmount"
+msgstr "მოხსნა"
+
+#: app/fileItemMenu.js:392 app/fileItemMenu.js:400
+msgid "Extract Here"
+msgstr "აქ გაშლა"
+
+#: app/fileItemMenu.js:406
+msgid "Extract To..."
+msgstr "გაშლის სამიზნე..."
+
+#: app/fileItemMenu.js:414
+msgid "Send to..."
+msgstr "გაგზავნა ვისთან..."
+
+#: app/fileItemMenu.js:423
+msgid "Compress {0} folder"
+msgid_plural "Compress {0} folders"
+msgstr[0] "{0} საქაღალდის შეკუმშვა"
+msgstr[1] "{0} საქაღალდის შეკუმშვა"
+
+#: app/fileItemMenu.js:432
+msgid "Compress {0} file"
+msgid_plural "Compress {0} files"
+msgstr[0] "{0} ფაილის შეკუმშვა"
+msgstr[1] "{0} ფაილის შეკუმშვა"
+
+#: app/fileItemMenu.js:442
+msgid "New Folder with {0} item"
+msgid_plural "New Folder with {0} items"
+msgstr[0] "ახალი საქაღალდე {0} ელემენტით"
+msgstr[1] "ახალი საქაღალდე {0} ელემენტით"
+
+#: app/fileItemMenu.js:453
+msgid "Common Properties"
+msgstr "საერთო თვისებები"
+
+#: app/fileItemMenu.js:453
+msgid "Properties"
+msgstr "თვისებები"
+
+#: app/fileItemMenu.js:461
+msgid "Show All in Files"
+msgstr "ყველას ჩვენება Files-ში"
+
+#: app/fileItemMenu.js:461
+msgid "Show in Files"
+msgstr "ფაილებში ჩვენება"
+
+#: app/fileItemMenu.js:469
+msgid "Open in Terminal"
+msgstr "ტერმინალში გახსნა"
+
+#: app/fileItemMenu.js:546
+msgid "No Extraction Folder"
+msgstr "გასაშლელი საქაღალდის გარეშე"
+
+#: app/fileItemMenu.js:547
+msgid "Unable to extract File, extraction Folder Does not Exist"
+msgstr "ფაილის გაშლა შეუძლებელია, რადგან გასაშლელი საქაღალდე აღმოჩენილი არაა"
+
+#: app/fileItemMenu.js:568
+msgid "Select Extract Destination"
+msgstr "აირჩიეთ გაშლის დანიშნულება"
+
+#: app/fileItemMenu.js:576
+msgid "Select"
+msgstr "არჩევა"
+
+#: app/fileItemMenu.js:617
+msgid "Can not email a Directory"
+msgstr "საქაღალდის ელფოსტაზე გაგზავნა შეუძლებელია"
+
+#: app/fileItemMenu.js:618
+msgid "Selection includes a Directory, compress the directory to a file first."
+msgstr "მონიშნული საქაღალდეს მოიცავს. ჯერ შეკუმშეთ საქაღალდე ფაილში."
+
+#: app/notifyX11UnderWayland.js:34
+msgid "Desktop Icons NG is running under X11Wayland"
+msgstr "Desktop Icons NG გაშვებულია X11Wayland-ზე"
+
+#: app/notifyX11UnderWayland.js:35
+msgid ""
+"It seems that you have your system configured to force GTK to use X11. This "
+"works, but it's suboptimal. You should check your system configuration to "
+"fix this."
+msgstr ""
+"როგორც ჩანს, თქვენს სისტემაში GTK-ს ხელით აქვს მითითებული, X11 გამოიყენოს. "
+"ეს მუშაობს, მაგრამ ოპტიმალური არაა. შეამოწმეთ სისტემის კონფიგურაციის ფაილები "
+"და გაასწორეთ ეს."
+
+#: app/notifyX11UnderWayland.js:36 app/showErrorPopup.js:36
+msgid "Close"
+msgstr "დახურვა"
+
+#: app/notifyX11UnderWayland.js:44
+msgid "Don't show this message anymore."
+msgstr "ეს შეტყობინება აღარ მაჩვენო."
+
+#: app/preferences.js:98
+msgid "Settings"
+msgstr "მორგება"
+
+#: app/prefswindow.js:64
+msgid "Size for the desktop icons"
+msgstr "სამუშაო მაგიდის ხატულების ზომა"
+
+#: app/prefswindow.js:64
+msgid "Tiny"
+msgstr "პაწაწინა"
+
+#: app/prefswindow.js:64
+msgid "Small"
+msgstr "პატარა"
+
+#: app/prefswindow.js:64
+msgid "Standard"
+msgstr "სტანდარტული"
+
+#: app/prefswindow.js:64
+msgid "Large"
+msgstr "დიდი"
+
+#: app/prefswindow.js:65
+msgid "Show the personal folder in the desktop"
+msgstr "სამუშაო მაგიდაზე პირადი საქაღალდის ჩვენება"
+
+#: app/prefswindow.js:66
+msgid "Show the trash icon in the desktop"
+msgstr "სამუშაო მაგიდაზე ნაგვის ყუთის ჩვენება"
+
+#: app/prefswindow.js:67 schemas/org.gnome.shell.extensions.ding.gschema.xml:45
+msgid "Show external drives in the desktop"
+msgstr "გარე დისკების ჩვენება სამუშაო მაგიდაზე"
+
+#: app/prefswindow.js:68 schemas/org.gnome.shell.extensions.ding.gschema.xml:50
+msgid "Show network drives in the desktop"
+msgstr "ქსელური დისკების ჩვენება სამუშაო მაგიდაზე"
+
+#: app/prefswindow.js:71
+msgid "New icons alignment"
+msgstr "ახალი ხატულების სწორება"
+
+#: app/prefswindow.js:73
+msgid "Top-left corner"
+msgstr "ზედა მარცხენა კუთხე"
+
+#: app/prefswindow.js:74
+msgid "Top-right corner"
+msgstr "ზედა მარჯვენა კუთხე"
+
+#: app/prefswindow.js:75
+msgid "Bottom-left corner"
+msgstr "ქვედა მარცხენა კუთხე"
+
+#: app/prefswindow.js:76
+msgid "Bottom-right corner"
+msgstr "ქვედა მარჯვენა კუთხე"
+
+#: app/prefswindow.js:78 schemas/org.gnome.shell.extensions.ding.gschema.xml:55
+msgid "Add new drives to the opposite side of the screen"
+msgstr "ახალი დისკების დამატება ეკრანის მოპირდაპირე მხარეს"
+
+#: app/prefswindow.js:79
+msgid "Highlight the drop place during Drag'n'Drop"
+msgstr "დაგდების არეს გამოკვეთა გადათრევა-დაგდებისას"
+
+#: app/prefswindow.js:80 schemas/org.gnome.shell.extensions.ding.gschema.xml:90
+msgid "Use Nemo to open folders"
+msgstr "Nemo-ის გამოყენება საქაღალდეების გასახსნელად"
+
+#: app/prefswindow.js:82
+msgid "Add an emblem to soft links"
+msgstr "ემბლემის დამატება რბილ ბმულებზე"
+
+#: app/prefswindow.js:84
+msgid "Use dark text in icon labels"
+msgstr "მუქი ტექსტის გამოყენება ხატულას ჭდეებისთვის"
+
+#: app/prefswindow.js:91
+msgid "Settings shared with Nautilus"
+msgstr "Nautilus-თან გაზიარებული პარამეტრები"
+
+#: app/prefswindow.js:113
+msgid "Click type for open files"
+msgstr "დაწკაპუნების ტიპი ფაილების გასახსნელად"
+
+#: app/prefswindow.js:113
+msgid "Single click"
+msgstr "ერთი წკაპი"
+
+#: app/prefswindow.js:113
+msgid "Double click"
+msgstr "ორმაგი წკაპი"
+
+#: app/prefswindow.js:114
+msgid "Show hidden files"
+msgstr "დამალული ფაილების ჩვენება"
+
+#: app/prefswindow.js:115
+msgid "Show a context menu item to delete permanently"
+msgstr "კონტექსტური მენიუს პუნქტის ჩვენება სამუდამოდ წასაშლელად"
+
+#: app/prefswindow.js:120
+msgid "Action to do when launching a program from the desktop"
+msgstr "ქმედება პროგრამის სამუშაო მაგიდიდან გაშვებისას"
+
+#: app/prefswindow.js:121
+msgid "Display the content of the file"
+msgstr "ფაილის შემცველობის გამოტანა"
+
+#: app/prefswindow.js:122
+msgid "Launch the file"
+msgstr "ფაილის გაშვება"
+
+#: app/prefswindow.js:123
+msgid "Ask what to do"
+msgstr "შეკითხვა, თუ რა გავაკეთო"
+
+#: app/prefswindow.js:129
+msgid "Show image thumbnails"
+msgstr "გამოსახულების მინიატურების ჩვენება"
+
+#: app/prefswindow.js:130
+msgid "Never"
+msgstr "არასდროს"
+
+#: app/prefswindow.js:131
+msgid "Local files only"
+msgstr "მხოლოდ ლოკალური ფაილები"
+
+#: app/prefswindow.js:132
+msgid "Always"
+msgstr "ყოველთვის"
+
+#: app/thumbnails.js:38
+#, fuzzy
+msgid "GnomeDesktop-4.0 GIR file not found"
+msgstr "GnomeDesktop-3.0-ის GIR ფაილი აღმოჩენილი არაა"
+
+#: app/thumbnails.js:39
+#, fuzzy
+msgid ""
+"GnomeDesktop-4.0.gir file is missing. Please, install the required package "
+"in your system."
+msgstr ""
+"ფაილი GnomeDesktop-3.0.gir აღმოჩენილი არაა. დააყენეთ აუცილებელი პაკეტი."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:25
+msgid "Icon size"
+msgstr "ხატულას ზომა"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:26
+msgid "Set the size for the desktop icons."
+msgstr "სამუშაო მაგიდის ხატულების ზომა."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:30
+msgid "Show personal folder"
+msgstr "პირადი საქაღალდის ჩვენება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:31
+msgid "Show the personal folder in the desktop."
+msgstr "სამუშაო მაგიდაზე პირადი საქაღალდის ჩვენება."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:35
+msgid "Show trash icon"
+msgstr "ნაგვის ყუთის ჩვენება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:36
+msgid "Show the trash icon in the desktop."
+msgstr "სამუშაო მაგიდაზე ნაგვის ყუთის ჩვენება."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:40
+msgid "New icons start corner"
+msgstr "ახალი ხატულების დაწყების კუთხე"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:41
+msgid "Set the corner from where the icons will start to be placed."
+msgstr "დააყენეთ კუთხე, საიდანაც ხატულების მოთავსების დაწყება მოხდება."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:46
+msgid "Show the disk drives connected to the computer."
+msgstr "კომპიუტერზე მიერთებული დისკების ჩვენება."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:51
+msgid "Show mounted network volumes in the desktop."
+msgstr "მიმაგრებული ქსელური დისკების ჩვენება სამუშაო მაგიდაზე."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:56
+msgid ""
+"When adding drives and volumes to the desktop, add them to the opposite side "
+"of the screen."
+msgstr ""
+"სამუშაო მაგიდაზე ტომებისა და დისკების დამატებისას მათი ეკრანის საწინააღმდეგო "
+"მხარეს დამატება."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:60
+msgid "Shows a rectangle in the destination place during DnD"
+msgstr "აჩვენებს ოთხკუთხედს სამიზნე არეზე გადათრევა/დაგდებისას"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:61
+msgid ""
+"When doing a Drag'n'Drop operation, marks the place in the grid where the "
+"icon will be put with a semitransparent rectangle."
+msgstr ""
+"გადათრევა-დაგდების ოპერაციის შესრულებისას მონიშნავს ადგილს ბადეზე, სადაც "
+"ხატულა მოთავსდება ნახევრადგამჭვირვალე ოთხკუთხედით."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:65
+msgid "Sort Special Folders - Home/Trash Drives."
+msgstr "სპეციალური საქაღალდეების დალაგება - საწყისი/ნაგვის ყუთის საქაღალდე."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:66
+msgid ""
+"When arranging Icons on desktop, to sort and change the position of the "
+"Home, Trash and mounted Network or External Drives"
+msgstr ""
+"სამუშაო მაგიდაზე ხატულების დალაგებისას, საწყისი, ნაგვის ყუთისა და "
+"მიმაგრებული ქსელური, ან გარე დისკების დასალაგებლად და მდებარეობის შესაცვლელად"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:70
+msgid "Keep Icons Arranged"
+msgstr "ხატულების დალაგებულად შენარჩუნება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:71
+msgid "Always keep Icons Arranged by the last arranged order"
+msgstr "ხატულების ყოველთვის უკანასკნელი მიმდევრობით დალაგებულად შენარჩუნება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:75
+msgid "Arrange Order"
+msgstr "დალაგების მიმდევრობა"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:76
+msgid "Icons Arranged by this property"
+msgstr "ხატულები დალაგებულია ამ თვისებით"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:80
+msgid "Keep Icons Stacked"
+msgstr "ხატულების დაჯგუფებულად შენარჩუნება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:81
+msgid "Always keep Icons Stacked, Similar types are grouped"
+msgstr "ხატულების ყოველთვის დაჯგუფებულად შენარჩუნება ერთნაირი ტიპებით"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:85
+msgid "Type of Files to not Stack"
+msgstr "ფაილების ტიპი, რომლების დაჯგუფებაც არ მოხდება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:86
+msgid "An Array of strings types, Don't Stack these types of files"
+msgstr "ტიპის სტრიქონების მასივი. ამ ტიპის ფაილების დაჯგუფება არ მოხდება"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:91
+msgid "Use Nemo instead of Nautilus to open folders."
+msgstr "Nemo-ის გამოყენება საქაღალდეების გასახსნელად Nautilus-ის მაგიერ."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:95
+msgid "Add an emblem to links"
+msgstr "ემბლემის დამატება ბმულებზე"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:96
+msgid "Add an emblem to allow to identify soft links."
+msgstr "ემბლემის დამატება რბილი ბმულების ამოსაცნობად."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:100
+msgid "Use black for label text"
+msgstr "შავის გამოყენება ჭდის ტექსტისთვის"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:101
+msgid ""
+"Paint the label text in black instead of white. Useful when using light "
+"backgrounds."
+msgstr ""
+"ჭდის ტექსტის დახატვა შავად, თეთრის მაგიერ. სასარგებლოა, როცა იყენებთ ღია "
+"ფერის ფონს."
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:105
+msgid "Show a popup if running on X11Wayland"
+msgstr "მხტუნარას ჩვენება X11Wayland-ზე გაშვებისას"
+
+#: schemas/org.gnome.shell.extensions.ding.gschema.xml:106
+msgid ""
+"Whether DING should show a popup if it is running on X11Wayland, or the user "
+"decided to not show it anymore."
+msgstr ""
+"უნდა აჩვენოს თუ არა DING-მა, როცა ის X11Wayland-ზეა გაშვებული, ან "
+"მომხმარებელმა გადაწყვიტა, რომ მისი ნახვა აღარ უნდა."
+
+#~ msgid "Folder name"
+#~ msgstr "საქაღალდის სახელი"
+
+#~ msgid "Create"
+#~ msgstr "შექმნა"
+
+#~ msgid "GLibUnix GIR file not found"
+#~ msgstr "GLibUnix-ის GIR ფაილი აღმოჩენილი არაა"
+
+#~ msgid ""
+#~ "GLibUnix-2.0.gir file is missing. Please, install the required package in "
+#~ "your system."
+#~ msgstr "ფაილი GLibUnix-2.0.gir აღმოჩენილი არაა. დააყენეთ აუცილებელი პაკეტი."
+
+#~ msgid "New Document"
+#~ msgstr "ახალი დოკუმენტი"
+
+#~ msgid "Paste"
+#~ msgstr "ჩასმა"
+
+#~ msgid "Undo"
+#~ msgstr "გაუქმება"
+
+#~ msgid "Redo"
+#~ msgstr "გამეორება"
+
+#~ msgid "Select All"
+#~ msgstr "ყველას მონიშვნა"
+
+#~ msgid "Show Desktop in Files"
+#~ msgstr "ფაილებში სამუშაო მაგიდის ჩვენება"
+
+#~ msgid "Change Background…"
+#~ msgstr "ფონის შეცვლა…"
+
+#~ msgid "Desktop Icons Settings"
+#~ msgstr "სამუშაო მაგიდის ხატულას პარამეტრები"
+
+#~ msgid "Display Settings"
+#~ msgstr "ეკრანის მორგება"
+
+#~ msgid "Template Creation Failed"
+#~ msgstr "შაბლონის შექმნა ჩავარდა"
+
+#~ msgid "Error while trying to create a Document"
+#~ msgstr "შეცდომა დოკუმენტის შექმნის მცდელობისას"
+
+#~ msgid "Arrange Icons"
+#~ msgstr "ხატულების დალაგება"
+
+#~ msgid "Arrange By..."
+#~ msgstr "დალაგების პირობა..."
+
+#~ msgid "Keep Arranged..."
+#~ msgstr "დალაგებულად დატოვება..."
+
+#~ msgid "Keep Stacked by type..."
+#~ msgstr "დაჯგუფებულად შენარჩუნება ტიპის მიხედვით..."
+
+#~ msgid "Sort Home/Drives/Trash..."
+#~ msgstr "საწყისი საქაღალდის/დისკების/ნაგვის ყუთის დალაგება..."
+
+#~ msgid "Sort by Name"
+#~ msgstr "დალაგება სახელით"
+
+#~ msgid "Sort by Name Descending"
+#~ msgstr "სახელის დაღმავლობით დალაგება"
+
+#~ msgid "Sort by Modified Time"
+#~ msgstr "ცვლილების დროით დალაგება"
+
+#~ msgid "Sort by Type"
+#~ msgstr "ტიპის მიხედვით დალაგება"
+
+#~ msgid "Sort by Size"
+#~ msgstr "ზომით დალაგება"
+
+#~ msgid "Home Selected"
+#~ msgstr "მონიშნულია საწყისი საქაღალდე"
+
+#~ msgid "Trash Selected"
+#~ msgstr "მონიშნულია ნაგვის ყუთი"
+
+#~ msgid "${VisibleName} Stack"
+#~ msgstr "${VisibleName} დასტა"
+
+#~ msgid "${VisibleName} Stack Selected"
+#~ msgstr "${VisibleName} დასტა მონიშნულია"
+
+#~ msgid "Scripts"
+#~ msgstr "სკრიპტები"

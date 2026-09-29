@@ -1,0 +1,6 @@
+.build/
+builddir/
+ding-with-widgets@yanjing_chen.qq.com/
+ding-with-widgets@yanjing_chen.qq.com.zip
+*.pyc
+__pycache__/

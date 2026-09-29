@@ -1,0 +1,25 @@
+# Run shexli (the GNOME Shell extension static analyzer) on the built
+# extension package.
+#
+# The job builds ding@rastersoft.com.zip with meson and runs shexli on it,
+# failing when new findings appear.
+#
+# The app/ modules are excluded because they are loaded through the legacy
+# imports.searchPath mechanism, which shexli's ESM reachability cannot follow,
+# and we do not monitor them here.
+#
+# See https://github.com/3v1n0/shexli-ci for the template and its variables.
+
+include:
+  - remote: 'https://raw.githubusercontent.com/3v1n0/shexli-ci/main/gitlab/shexli-ci.yml'
+
+shexli:
+  extends: .shexli
+  variables:
+    SHEXLI_PATH: 'ding@rastersoft.com.zip'
+    SHEXLI_EXCLUDE: |
+      app/**
+    SHEXLI_BUILD: |
+      apt-get update -qq
+      apt-get install -y -qq meson ninja-build gettext zip
+      ./export-zip.sh

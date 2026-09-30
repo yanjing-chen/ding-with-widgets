@@ -1,15 +1,16 @@
 {
   "id": "ding.mac.weather",
   "name": "天气",
-  "description": "显示当前天气与未来四天预报，可搜索并保存城市",
+  "description": "三种尺寸的当前天气、逐小时天气与五日预报",
   "kind": "html",
   "entry": "index.html",
-  "version": 4,
-  "defaultWidth": 420,
-  "defaultHeight": 310,
-  "minimumWidth": 300,
-  "minimumHeight": 240,
+  "version": 5,
+  "defaultWidth": 500,
+  "defaultHeight": 350,
+  "minimumWidth": 180,
+  "minimumHeight": 190,
   "defaultConfig": {
+    "layoutPreset": "large",
     "opacity": 1,
     "location": {
       "name": "上海",

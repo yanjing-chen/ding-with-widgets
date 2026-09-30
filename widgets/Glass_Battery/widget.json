@@ -1,0 +1,17 @@
+{
+  "id": "ding.mac.battery",
+  "name": "设备电量",
+  "description": "显示笔记本电脑与已连接蓝牙设备的剩余电量",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 3,
+  "defaultWidth": 420,
+  "defaultHeight": 250,
+  "minimumWidth": 260,
+  "minimumHeight": 190,
+  "defaultConfig": {
+    "opacity": 1,
+    "selectedDeviceIds": [],
+    "selectionInitialized": false
+  }
+}

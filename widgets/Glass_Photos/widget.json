@@ -1,0 +1,19 @@
+{
+  "id": "ding.mac.photos",
+  "name": "照片",
+  "description": "显示本机自定义文件夹中的照片，支持单张与拼贴布局",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 1,
+  "defaultWidth": 500,
+  "defaultHeight": 320,
+  "minimumWidth": 200,
+  "minimumHeight": 210,
+  "defaultConfig": {
+    "layoutPreset": "landscape",
+    "folderPath": "",
+    "folderName": "",
+    "opacity": 1,
+    "intervalSeconds": 60
+  }
+}

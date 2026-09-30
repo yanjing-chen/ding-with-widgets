@@ -10,6 +10,7 @@ app_extensions_dir = join_paths(prefix, 'share', 'gnome-shell', 'extensions', ex
 install_data([
     'askRenamePopup.js',
     'autoAr.js',
+    'calendarBackend.js',
     'createThumbnail.js',
     'dbusInterfaces.js',
     'dbusUtils.js',
@@ -33,6 +34,7 @@ install_data([
     'showErrorPopup.js',
     'signalManager.js',
     'stackItem.js',
+    'systemMonitor.js',
     'stylesheet.css',
     'templatesScriptsManager.js',
     'thumbnails.js',

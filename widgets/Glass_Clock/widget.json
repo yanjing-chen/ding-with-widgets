@@ -4,13 +4,14 @@
   "description": "联网搜索城市并同时显示多个地点的当地时间",
   "kind": "html",
   "entry": "index.html",
-  "version": 7,
+  "version": 10,
   "defaultWidth": 420,
   "defaultHeight": 330,
   "minimumWidth": 280,
   "minimumHeight": 220,
   "defaultConfig": {
     "hour12": false,
+    "displayStyle": "digital",
     "opacity": 1,
     "locations": [
       {"label": "上海", "timeZone": "Asia/Shanghai"},

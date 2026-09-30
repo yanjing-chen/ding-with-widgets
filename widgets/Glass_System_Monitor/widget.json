@@ -1,0 +1,22 @@
+{
+  "id": "ding.mac.system-monitor",
+  "name": "系统监控",
+  "description": "显示 CPU、内存、显卡、磁盘容量与读写速度和网络速度",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 3,
+  "defaultWidth": 680,
+  "defaultHeight": 250,
+  "minimumWidth": 240,
+  "minimumHeight": 200,
+  "defaultConfig": {
+    "layoutPreset": "large",
+    "opacity": 1,
+    "refreshInterval": 1,
+    "visibleMetrics": ["cpu", "memory", "gpu", "disk", "network"],
+    "gpuDevice": "auto",
+    "diskDevice": "all",
+    "networkDevice": "auto",
+    "metricVisibilityCustomized": false
+  }
+}

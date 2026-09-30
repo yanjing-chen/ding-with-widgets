@@ -150,6 +150,13 @@ export var DesktopGrid = class extends SignalManager.SignalManager {
         this._x = this._desktopDescription.x + this._desktopDescription.windowMarginLeft;
         this._y = this._desktopDescription.y + this._desktopDescription.windowMarginTop;
         this._monitor = this._desktopDescription.monitorIndex;
+        this._monitorId = String(
+            this._desktopDescription.monitorId ?? `legacy-index:${this._monitor}`
+        );
+        this._monitorIdentityStable = Boolean(
+            this._desktopDescription.monitorIdentityStable ??
+            !this._monitorId.includes('legacy-index:')
+        );
         this._size_divisor = this._zoom;
 
         this._windowWidth = Math.floor((this._desktopDescription.width - (this._desktopDescription.windowMarginRight + this._desktopDescription.windowMarginLeft)) / this._size_divisor);
@@ -227,6 +234,14 @@ export var DesktopGrid = class extends SignalManager.SignalManager {
 
     get widgetMonitor() {
         return this._monitor;
+    }
+
+    get widgetMonitorId() {
+        return this._monitorId;
+    }
+
+    get widgetMonitorIdentityStable() {
+        return this._monitorIdentityStable;
     }
 
     get widgetContainer() {
@@ -458,13 +473,16 @@ export var DesktopGrid = class extends SignalManager.SignalManager {
                 Math.max(1, this._width);
             const normalizedY = (localY + elementSpacing) /
                 Math.max(1, this._height);
-            fileItem.savedCoordinates = [
+            const savedCoordinates = [
                 x,
                 y,
                 normalizedX,
                 normalizedY,
                 this._monitor,
             ];
+            if (this._monitorIdentityStable)
+                savedCoordinates.push(this._monitorId);
+            fileItem.savedCoordinates = savedCoordinates;
         }
     }
 

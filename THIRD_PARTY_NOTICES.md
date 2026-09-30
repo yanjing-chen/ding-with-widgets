@@ -42,6 +42,27 @@ The weather Widget uses Open-Meteo for forecasts and city lookup. The world-cloc
 
 Open-Meteo's geocoding documentation identifies GeoNames as the source of location data. Attribution to Open-Meteo and GeoNames is shown in the weather and world-clock Widgets.
 
+## MPRIS
+
+- Specification: <https://specifications.freedesktop.org/mpris/latest/>
+- Interface version: MPRIS 2.2
+
+The music Widget interoperates with installed media players through the standard
+MPRIS D-Bus interfaces. It does not bundle player code, music-service SDKs, or
+third-party album artwork. Artwork is displayed only when the selected player
+publishes an artwork URI in its current-track metadata.
+
+## GNOME Resources
+
+- Project: <https://apps.gnome.org/Resources/>
+- License: GNU General Public License version 3 or later
+
+GNOME Resources was used only as a functional reference for the categories and
+information hierarchy of the system-monitor Widget. This project does not copy
+or bundle its source code, icons, screenshots, or other assets. The provider is
+an independent GJS implementation using Linux `/proc`, `/sys`, and the optional
+NVIDIA driver utility.
+
 ## Trademarks and visual references
 
 The phrase “inspired by the visual style of macOS” describes a general visual direction only. No Apple source code, icons, fonts, screenshots, or other proprietary assets are distributed with this project. Mac and macOS are trademarks of Apple Inc. This project is not affiliated with or endorsed by Apple, GNOME, Canonical, Open-Meteo, or any upstream project listed above.

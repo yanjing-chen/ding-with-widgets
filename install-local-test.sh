@@ -89,8 +89,60 @@ if [[ ! -f "${installed_widget_dir}/Glass_Weather/widget.json" ]]; then
     exit 1
 fi
 
+if ! grep -q 'layoutPreset' "${installed_widget_dir}/Glass_Weather/widget.json" ||
+   ! grep -q 'hourly' "${installed_widget_dir}/Glass_Weather/weather.js"; then
+    echo "安装校验失败：三尺寸天气小组件没有正确安装。"
+    exit 1
+fi
+
+if [[ ! -f "${installed_widget_dir}/Glass_Photos/widget.json" ]] ||
+   ! grep -q 'choosePhotoFolder' "${extension_dir}/app/widgetManager.js" ||
+   ! grep -q 'layoutPreset' "${installed_widget_dir}/Glass_Photos/widget.json"; then
+    echo "安装校验失败：照片小组件没有正确安装。"
+    exit 1
+fi
+
+if [[ ! -f "${installed_widget_dir}/Glass_Music/widget.json" ]] ||
+   ! grep -q 'getMediaPlayers' "${extension_dir}/app/widgetManager.js" ||
+   ! grep -q 'controlMediaPlayer' "${extension_dir}/app/widgetManager.js" ||
+   ! grep -q 'layoutPreset' "${installed_widget_dir}/Glass_Music/widget.json"; then
+    echo "安装校验失败：音乐播放器小组件没有正确安装。"
+    exit 1
+fi
+
+if [[ ! -f "${installed_widget_dir}/Glass_Battery/widget.json" ]] ||
+   ! grep -q 'getPowerDevices' "${extension_dir}/app/widgetManager.js"; then
+    echo "安装校验失败：设备电量小组件没有正确安装。"
+    exit 1
+fi
+
+if [[ ! -f "${installed_widget_dir}/Glass_System_Monitor/widget.json" ]] ||
+   [[ ! -f "${extension_dir}/app/systemMonitor.js" ]] ||
+   ! grep -q 'getSystemMonitorState' "${extension_dir}/app/widgetManager.js" ||
+   ! grep -q 'filesystem::size' "${extension_dir}/app/systemMonitor.js" ||
+   ! grep -q 'gpu_busy_percent' "${extension_dir}/app/systemMonitor.js" ||
+   ! grep -q 'nvidia-smi' "${extension_dir}/app/systemMonitor.js"; then
+    echo "安装校验失败：系统监控小组件或硬件采集模块没有正确安装。"
+    exit 1
+fi
+
 if ! grep -q 'holidays_cn.json' "${installed_widget_dir}/Glass_Calendar/calendar.js"; then
     echo "安装校验失败：中国大陆节假日数据源没有正确安装。"
+    exit 1
+fi
+
+if ! grep -q 'monitorId' "${extension_dir}/extension.js" ||
+   ! grep -q 'widgetMonitorId' "${extension_dir}/app/desktopGrid.js" ||
+   ! grep -q 'monitorId' "${extension_dir}/app/widgetManager.js"; then
+    echo "安装校验失败：多屏幕物理身份修复没有正确安装。"
+    exit 1
+fi
+
+if ! grep -q 'layoutPreset' "${installed_widget_dir}/Glass_Calendar/widget.json" ||
+   ! grep -q 'setSize(width, height)' "${extension_dir}/app/widgetManager.js" ||
+   ! grep -q 'calendarGetEvents' "${extension_dir}/app/widgetManager.js" ||
+   [[ ! -f "${extension_dir}/app/calendarBackend.js" ]]; then
+    echo "安装校验失败：三尺寸日历没有正确安装。"
     exit 1
 fi
 

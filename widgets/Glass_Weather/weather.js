@@ -1,4 +1,11 @@
+const LAYOUT_PRESETS = {
+  compact: {width: 190, height: 220},
+  medium: {width: 500, height: 235},
+  large: {width: 500, height: 350},
+};
+
 const defaults = {
+  layoutPreset: 'large',
   opacity: 1,
   location: {
     name: '上海',
@@ -13,9 +20,10 @@ const defaults = {
 
 const elements = Object.fromEntries([
   'location-name', 'updated', 'weather-icon', 'temperature', 'condition',
-  'high-low', 'apparent', 'humidity', 'wind', 'forecast', 'status',
+  'high-low', 'apparent', 'humidity', 'wind', 'hourly', 'forecast', 'status',
   'settings', 'settings-button', 'close-settings', 'search-form',
   'city-input', 'search-status', 'search-results', 'opacity', 'opacity-value',
+  'layout-options',
 ].map(id => [id, document.getElementById(id)]));
 const weatherCard = document.querySelector('.weather');
 
@@ -27,11 +35,16 @@ function copy(value) {
 }
 
 function applyAppearance() {
+  if (!Object.hasOwn(LAYOUT_PRESETS, config.layoutPreset))
+    config.layoutPreset = 'large';
   config.opacity = Math.min(1, Math.max(.35, Number(config.opacity) || 1));
+  weatherCard.dataset.layout = config.layoutPreset;
   weatherCard.style.setProperty('--widget-opacity', String(config.opacity));
   elements.opacity.value = String(Math.round(config.opacity * 100));
   elements['opacity-value'].value = `${Math.round(config.opacity * 100)}%`;
   elements['opacity-value'].textContent = elements['opacity-value'].value;
+  for (const button of document.querySelectorAll('.layout-option'))
+    button.classList.toggle('selected', button.dataset.preset === config.layoutPreset);
 }
 
 function weatherInfo(code) {
@@ -81,8 +94,37 @@ function render(data) {
     hour: '2-digit', minute: '2-digit',
   })}`;
 
+  const hourlyCards = [];
+  const hourly = data?.hourly;
+  if (Array.isArray(hourly?.time)) {
+    const currentTime = String(current.time ?? '');
+    let startIndex = hourly.time.findIndex(time => String(time) >= currentTime);
+    if (startIndex < 0)
+      startIndex = 0;
+    for (let offset = 0; offset < 5; offset++) {
+      const index = startIndex + offset;
+      if (index >= hourly.time.length)
+        break;
+      const [text, hourIcon] = weatherInfo(Number(hourly.weather_code?.[index]));
+      const card = document.createElement('article');
+      const time = document.createElement('strong');
+      time.textContent = offset === 0
+        ? '现在'
+        : `${String(hourly.time[index]).slice(11, 13)}时`;
+      const symbol = document.createElement('span');
+      symbol.className = 'hourly-icon';
+      symbol.textContent = hourIcon;
+      symbol.title = text;
+      const temperature = document.createElement('small');
+      temperature.textContent = `${number(hourly.temperature_2m?.[index])}°`;
+      card.append(time, symbol, temperature);
+      hourlyCards.push(card);
+    }
+  }
+  elements.hourly.replaceChildren(...hourlyCards);
+
   const cards = [];
-  for (let index = 1; index < Math.min(5, daily.time?.length ?? 0); index++) {
+  for (let index = 0; index < Math.min(5, daily.time?.length ?? 0); index++) {
     const [text, dayIcon] = weatherInfo(Number(daily.weather_code[index]));
     const card = document.createElement('article');
     const day = document.createElement('strong');
@@ -119,6 +161,7 @@ async function updateWeather() {
     daily: [
       'weather_code', 'temperature_2m_max', 'temperature_2m_min',
     ].join(','),
+    hourly: ['temperature_2m', 'weather_code'].join(','),
     timezone: 'auto',
     forecast_days: '5',
   });
@@ -179,6 +222,18 @@ elements.opacity.addEventListener('input', async () => {
   config.opacity = Math.min(1, Math.max(.35, Number(elements.opacity.value) / 100));
   applyAppearance();
   await saveConfig();
+});
+elements['layout-options'].addEventListener('click', async event => {
+  const button = event.target.closest('.layout-option');
+  const preset = button?.dataset.preset;
+  if (!Object.hasOwn(LAYOUT_PRESETS, preset))
+    return;
+  config.layoutPreset = preset;
+  applyAppearance();
+  await saveConfig();
+  const size = LAYOUT_PRESETS[preset];
+  window.ding?.setSize?.(size.width, size.height);
+  elements.settings.hidden = true;
 });
 elements['search-form'].addEventListener('submit', async event => {
   event.preventDefault();

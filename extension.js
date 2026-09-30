@@ -214,6 +214,136 @@ export default class DING extends Extension {
         }
     }
 
+    _monitorIdentityPart(value) {
+        const text = String(value ?? '').trim().toLowerCase() || 'unknown';
+        return encodeURIComponent(text);
+    }
+
+    _monitorIdentityData() {
+        const monitorsByIndex = new Map();
+        try {
+            const backend = global.get_backend?.() ?? global.backend;
+            const manager = backend?.get_monitor_manager?.();
+            const logicalMonitors = manager?.get_logical_monitors?.() ?? [];
+            for (const logicalMonitor of logicalMonitors) {
+                const monitorIndex = Number(logicalMonitor.get_number?.());
+                if (!Number.isInteger(monitorIndex) || monitorIndex < 0)
+                    continue;
+
+                // A logical monitor can contain multiple physical monitors
+                // when GNOME is using mirror mode. Treat the whole group as
+                // one desktop, but include every physical identity in its ID.
+                const monitors = logicalMonitor.get_monitors?.() ?? [];
+                for (const monitor of monitors) {
+                    if (monitor.is_active && !monitor.is_active())
+                        continue;
+
+                    const connector = String(
+                        monitor.get_connector?.() ?? ''
+                    ).trim();
+                    if (!connector)
+                        continue;
+
+                    const vendor = String(
+                        monitor.get_vendor?.() ?? ''
+                    ).trim();
+                    const product = String(
+                        monitor.get_product?.() ?? ''
+                    ).trim();
+                    const serial = String(
+                        monitor.get_serial?.() ?? ''
+                    ).trim();
+                    const displayName = String(
+                        monitor.get_display_name?.() ?? ''
+                    ).trim();
+                    const serialKey = serial.toLowerCase();
+                    const reliableSerial = Boolean(serial) &&
+                        !/^(unknown|none|n\/a|0|0x0+|0+)$/.test(serialKey);
+                    const identity = reliableSerial
+                        ? [
+                            'hardware',
+                            this._monitorIdentityPart(vendor),
+                            this._monitorIdentityPart(product),
+                            this._monitorIdentityPart(serial),
+                        ].join(':')
+                        : [
+                            'connector',
+                            this._monitorIdentityPart(connector),
+                            this._monitorIdentityPart(vendor),
+                            this._monitorIdentityPart(product),
+                        ].join(':');
+                    const specs = monitorsByIndex.get(monitorIndex) ?? [];
+                    specs.push({
+                        connector,
+                        vendor,
+                        product,
+                        serial,
+                        displayName: displayName || product || connector,
+                        identity,
+                    });
+                    monitorsByIndex.set(monitorIndex, specs);
+                }
+            }
+        } catch (e) {
+            console.warn(`DING: unable to read stable monitor identities: ${e.message}`);
+        }
+
+        // Some inexpensive displays expose the same placeholder serial on
+        // every unit. Add the connector only when an active identity is
+        // duplicated, so normal displays can still move between ports while
+        // identical ambiguous displays remain distinguishable.
+        const identityCounts = new Map();
+        for (const specs of monitorsByIndex.values()) {
+            for (const item of specs) {
+                identityCounts.set(
+                    item.identity,
+                    (identityCounts.get(item.identity) ?? 0) + 1
+                );
+            }
+        }
+        for (const specs of monitorsByIndex.values()) {
+            for (const item of specs) {
+                if ((identityCounts.get(item.identity) ?? 0) > 1) {
+                    item.identity +=
+                        `:port:${this._monitorIdentityPart(item.connector)}`;
+                }
+            }
+        }
+
+        const result = new Map();
+        for (let monitorIndex = 0;
+            monitorIndex < Main.layoutManager.monitors.length;
+            monitorIndex++) {
+            const specs = monitorsByIndex.get(monitorIndex) ?? [];
+            specs.sort((left, right) =>
+                left.identity.localeCompare(right.identity));
+            const monitorId = specs.length
+                ? `monitor-v1:${specs.map(item => item.identity).join('+')}`
+                : `monitor-v1:legacy-index:${monitorIndex}`;
+            result.set(monitorIndex, {
+                monitorId,
+                monitorIdentityStable: specs.length > 0,
+                monitorConnector: specs.map(item => item.connector).join('+'),
+                monitorLabel: specs.map(item => item.displayName).join(' + ') ||
+                    `显示器 ${monitorIndex + 1}`,
+            });
+        }
+        return result;
+    }
+
+    _monitorDataVariant(monitorData) {
+        const values = {};
+        for (const [key, value] of Object.entries(monitorData)) {
+            if (typeof value === 'string')
+                values[key] = new GLib.Variant('s', value);
+            else if (typeof value === 'boolean')
+                values[key] = new GLib.Variant('b', value);
+            else
+                values[key] = new GLib.Variant('d', Number(value));
+        }
+        return new GLib.Variant('a{sv}', values);
+    }
+
     /**
      *
      */
@@ -222,8 +352,15 @@ export default class DING extends Extension {
         const desktopList = [];
         const ws = global.workspace_manager.get_active_workspace();
         const {scaleFactor} = St.ThemeContext.get_for_stage(global.stage);
+        const monitorIdentities = this._monitorIdentityData();
+        const primaryMonitorId = monitorIdentities.get(
+            Main.layoutManager.primaryIndex
+        )?.monitorIdentityStable
+            ? monitorIdentities.get(Main.layoutManager.primaryIndex).monitorId
+            : '';
         for (let monitorIndex = 0; monitorIndex < Main.layoutManager.monitors.length; monitorIndex++) {
             const area = this.data.visibleArea.getMonitorGeometry(ws, monitorIndex);
+            const identity = monitorIdentities.get(monitorIndex) ?? {};
             const monitorData = {
                 'x': area.x,
                 'y': area.y,
@@ -235,7 +372,14 @@ export default class DING extends Extension {
                 'marginLeft': area.marginLeft,
                 'marginRight': area.marginRight,
                 monitorIndex,
+                'monitorId': identity.monitorId ??
+                    `monitor-v1:legacy-index:${monitorIndex}`,
+                'monitorIdentityStable': identity.monitorIdentityStable ?? false,
+                'monitorConnector': identity.monitorConnector ?? '',
+                'monitorLabel': identity.monitorLabel ??
+                    `显示器 ${monitorIndex + 1}`,
                 'primaryMonitor': Main.layoutManager.primaryIndex,
+                primaryMonitorId,
                 'windowMarginTop': area.windowMarginTop,
                 'windowMarginBottom': area.windowMarginBottom,
                 'windowMarginLeft': area.windowMarginLeft,
@@ -245,7 +389,7 @@ export default class DING extends Extension {
             for (let a in monitorData) {
                 console.log(`    ${a}: ${monitorData[a]}`);
             }*/
-            const desktopListElement = new GLib.Variant('a{sd}', monitorData);
+            const desktopListElement = this._monitorDataVariant(monitorData);
             desktopVariantList.push(desktopListElement);
             desktopList.push(monitorData);
         }

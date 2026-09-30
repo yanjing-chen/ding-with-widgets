@@ -1,0 +1,21 @@
+{
+  "id": "ding.mac.music",
+  "name": "音乐播放器",
+  "description": "通过 MPRIS 控制已安装的音乐和媒体播放器",
+  "kind": "html",
+  "entry": "index.html",
+  "version": 2,
+  "defaultWidth": 500,
+  "defaultHeight": 240,
+  "minimumWidth": 200,
+  "minimumHeight": 200,
+  "defaultConfig": {
+    "layoutPreset": "medium",
+    "opacity": 1,
+    "selectionMode": "auto",
+    "preferredDesktopId": "",
+    "preferredIdentity": "",
+    "preferredName": "",
+    "showBrowserPlayers": true
+  }
+}

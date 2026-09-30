@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="../shared/glass.css?v=2">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=7">
   <title>世界时钟</title>
 </head>
 <body>
@@ -12,7 +12,6 @@
     <header>
       <div>
         <span class="eyebrow">世界时钟</span>
-        <strong>多地时间</strong>
       </div>
       <button id="settings-button" class="icon-button" type="button"
         title="设置城市" aria-label="设置城市">&#9881;</button>
@@ -41,6 +40,30 @@
       <div id="search-results" class="search-results"
         aria-label="城市搜索结果"></div>
 
+      <fieldset class="style-picker">
+        <legend>显示样式</legend>
+        <div class="style-options">
+          <label class="style-option">
+            <input id="style-digital" type="radio" name="clock-style"
+              value="digital" checked>
+            <span class="style-choice">
+              <span class="digital-preview">09:41</span>
+              <strong>数显</strong>
+            </span>
+          </label>
+          <label class="style-option">
+            <input id="style-analog" type="radio" name="clock-style"
+              value="analog">
+            <span class="style-choice">
+              <span class="analog-preview" aria-hidden="true">
+                <i class="preview-hour"></i><i class="preview-minute"></i>
+              </span>
+              <strong>表显</strong>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
       <label class="switch-row">
         <span>使用 24 小时制</span>
         <input id="hour-24" type="checkbox" checked>
@@ -56,6 +79,6 @@
     </p>
     <div class="glow"></div>
   </main>
-  <script src="clock.js?v=4"></script>
+  <script src="clock.js?v=6"></script>
 </body>
 </html>

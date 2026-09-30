@@ -4,31 +4,42 @@
 
 本项目是 [`rastersoft/desktop-icons-ng`](https://gitlab.com/rastersoft/desktop-icons-ng) 的非官方衍生版本，并参考了 [`smedius/desktop-icons-ng`](https://gitlab.com/smedius/desktop-icons-ng) 的 GTK4 Widget 架构思路。它不是 GNOME、Canonical、Apple 或上述上游项目的官方产品。
 
-## 0.7.16 功能
+## 1.0.0 正式版
+
+1.0.0 是第一个正式版本，以 GTK4 DING 为基础，整合桌面图标管理和八个中文桌面 Widget。它保留经过测试的 Alpha 7.3 功能，不再增加新的功能性改动。
+
+本版重点解决多屏幕物理身份问题：桌面图标和 Widget 会记录所属显示器的硬件身份，而不是只记录可能随热插拔变化的数字编号。副屏断开后，其内容会临时显示在主屏；同一块副屏接回后恢复原归属和位置。详细内容见 [`RELEASE_NOTES_1.0.0.md`](RELEASE_NOTES_1.0.0.md)。
+
+## 主要功能
 
 - 支持 GNOME Shell 50、51 和 Wayland。
 - 保留 DING 的桌面图标、自由排列、拖放和右键菜单等功能。
-- 内置四个统一视觉风格的中文 Widget：便笺、世界时钟、日历、天气。
+- 内置八个统一视觉风格的中文 Widget：便笺、世界时钟、日历、天气、设备电量、照片、音乐播放器、系统监控。
 - Widget 可在同一屏幕或不同屏幕之间直接拖动，并记录所属屏幕、位置和尺寸。
-- 外接屏幕断开时，位于副屏的 Widget 会安全迁回可用屏幕。
+- 外接屏幕断开时，位于副屏的 Widget 会临时显示在主屏；同一块副屏接回后恢复原归属和位置。
 - 四边和四角均可缩放；拖动与缩放感应区平时保持透明。
 - 登录、重启 DING、睡眠与唤醒后恢复 Widget 的内容、设置、位置和尺寸。
 - 便笺支持标题、富文本、字体、字号、颜色、Checklist 与透明度。
-- 世界时钟通过城市名搜索地点，可显示多个城市并切换 12/24 小时制。
+- 世界时钟通过城市名搜索地点，可显示多个城市，支持数显、表显与 12/24 小时制；表显钟面随系统深浅色主题自动切换。
 - 日历支持翻月、农历、传统节日、二十四节气和中国大陆休假/补班信息。
-- 天气支持城市搜索、当前天气、体感温度、湿度、风速和四日预报。
+- 天气支持三种尺寸、城市搜索、当前天气、逐小时天气、体感温度、湿度、风速和五日预报。
+- 设备电量使用系统 UPower 数据，并可选择显示笔记本电脑和已连接蓝牙设备。
+- 照片可从自定义本机文件夹轮播，支持两种单图尺寸和三图拼贴。
+- 音乐播放器通过 MPRIS 兼容用户已安装应用，支持三种尺寸、封面、进度和播放控制。
+- 系统监控支持三种尺寸，可选择显示 CPU、内存、AMD/NVIDIA 显卡、磁盘容量与实时读写，以及网络上下行曲线。
 
 扩展标识：
 
 - 名称：`DING with Widgets`
 - UUID：`ding-with-widgets@yanjing_chen.qq.com`
-- 当前版本：`0.7.16`
+- 当前正式版本：`1.0.0`
 
 ## 系统要求
 
 - Ubuntu 26.04 或其他提供 GNOME Shell 50/51 的 Linux 发行版
 - GTK 4、GJS、Meson、Ninja
 - WebKitGTK 6 GObject Introspection：`gir1.2-webkit-6.0`
+- 新增系统日程需要 Evolution Data Server 的 `ECal 2.0` 与 `ICalGLib 3.0` GObject Introspection（安装 GNOME 日历时通常已具备）
 - GNOME Extensions 命令行工具
 
 目前仅明确支持 GNOME Shell 50 和 51。其他版本可能可以运行，但尚未验证。
@@ -37,19 +48,19 @@
 
 ### 从 Release 安装（推荐）
 
-1. 从本仓库的 [Releases](https://github.com/yanjing-chen/ding-with-widgets/releases) 下载 `ding-with-widgets-v0.7.16-gnome50-51.zip`。
+1. 下载对应版本的 ZIP：`ding-with-widgets-v1.0.0-gnome50-51.zip`。
 2. 打开终端并安装依赖：
 
 ```bash
 sudo apt update
-sudo apt install gjs meson ninja-build libglib2.0-bin gir1.2-webkit-6.0
+sudo apt install gjs meson ninja-build libglib2.0-bin gir1.2-webkit-6.0 gir1.2-ecal-2.0 gir1.2-ical-3.0
 ```
 
 3. 解压并安装：
 
 ```bash
 cd ~/下载
-unzip ding-with-widgets-v0.7.16-gnome50-51.zip
+unzip -o ding-with-widgets-v1.0.0-gnome50-51.zip
 cd ding-with-widgets
 chmod +x install-local-test.sh
 ./install-local-test.sh
@@ -121,7 +132,11 @@ gnome-extensions enable ding@rastersoft.com
 - 天气数据和城市搜索由 [Open-Meteo](https://open-meteo.com/) 提供。天气 Widget 会向 Open-Meteo 发送所搜索的城市名以及所选城市的经纬度。
 - 世界时钟仅使用 Open-Meteo 的城市地理编码服务确定时区，时间在本机计算。
 - 日历按用户操作从 [`tigertall/chinese-calendar`](https://github.com/tigertall/chinese-calendar) 的公开数据源获取中国大陆节假日信息，并在本地缓存。
+- 日历 Widget 通过 GNOME Shell CalendarServer 读取 Evolution Data Server 中的日程；使用 `＋` 新建的安排写入用户的默认系统日历。
 - 便笺内容、Widget 设置和布局保存在本机，不会由本项目上传到服务器。
+- 照片 Widget 仅扫描用户在原生文件夹选择器中明确选定的本机目录；图片不会发送给任何第三方。
+- 音乐 Widget 只通过本机会话 D-Bus/MPRIS 与播放器通信；不读取账号凭据，网络封面由播放器提供的地址显示。
+- 系统监控 Widget 只读取本机 `/proc`、`/sys` 和可选的 NVIDIA 驱动工具，不会上传硬件或流量数据。
 
 Open-Meteo 的免费端点、数据许可及使用限制以其[官方条款](https://open-meteo.com/en/terms)为准；用于商业场景前请自行确认适用方案。
 
@@ -133,6 +148,8 @@ Open-Meteo 的免费端点、数据许可及使用限制以其[官方条款](htt
 - Canonical 的 Debian/Ubuntu 打包贡献者：上游 `debian/` 目录中的相关贡献。
 - [tigertall/chinese-calendar](https://github.com/tigertall/chinese-calendar)：中国大陆节假日公开数据和缓存方式参考。
 - [Open-Meteo](https://open-meteo.com/)：天气预报和城市地理编码服务。
+- [freedesktop.org MPRIS](https://specifications.freedesktop.org/mpris/latest/)：音乐 Widget 与已安装播放器之间的标准 D-Bus 接口。
+- [Resources](https://apps.gnome.org/zh-CN/Resources/)：系统监控项目和信息层级的功能参考。本项目未复制其 Rust 源代码或图标。
 
 详细归属和第三方服务说明见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。感谢所有上游作者和开源社区贡献者。
 

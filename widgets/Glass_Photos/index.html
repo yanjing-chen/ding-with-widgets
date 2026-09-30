@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css?v=1">
+  <title>照片</title>
+</head>
+<body>
+  <main class="photos glass-card" data-layout="landscape">
+    <header class="photos-head">
+      <span class="eyebrow">照片</span>
+      <button id="settings-button" class="icon-button" type="button"
+        title="照片设置" aria-label="照片设置">⚙</button>
+    </header>
+
+    <section id="photo-stage" class="photo-stage" aria-live="polite"></section>
+    <p id="photo-caption" class="photo-caption"></p>
+
+    <section id="settings" class="settings" hidden>
+      <header class="settings-head">
+        <div><span class="eyebrow">设置</span><strong>照片来源</strong></div>
+        <button id="close-settings" class="icon-button" type="button"
+          title="完成" aria-label="完成">✓</button>
+      </header>
+
+      <div class="folder-row">
+        <div><span>图片文件夹</span><strong id="folder-name">尚未选择</strong></div>
+        <button id="choose-folder" type="button">选择文件夹</button>
+      </div>
+      <div class="scan-row">
+        <button id="rescan-folder" type="button">重新扫描</button>
+        <span id="photo-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="layout-settings">
+        <span>选择后会自动调整小组件尺寸</span>
+        <div id="layout-options" class="layout-options">
+          <button class="layout-option" type="button" data-preset="compact">
+            <span class="layout-preview preview-compact"><i></i></span>
+            <span><b>方形</b><small>单张照片</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="landscape">
+            <span class="layout-preview preview-landscape"><i></i></span>
+            <span><b>横向</b><small>单张照片</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="collage">
+            <span class="layout-preview preview-collage"><i></i><i></i><i></i></span>
+            <span><b>拼贴</b><small>三张照片</small></span>
+          </button>
+        </div>
+      </div>
+
+      <label class="select-row">
+        <span>照片切换间隔</span>
+        <select id="interval">
+          <option value="30">30 秒</option>
+          <option value="60">1 分钟</option>
+          <option value="300">5 分钟</option>
+          <option value="900">15 分钟</option>
+        </select>
+      </label>
+      <label class="setting-slider">
+        <span>卡片透明度</span><output id="opacity-value">100%</output>
+        <input id="opacity" type="range" min="35" max="100" step="5">
+      </label>
+      <p class="privacy-note">照片仅从所选本机文件夹读取，不会上传网络。点击照片可立即切换下一张。</p>
+    </section>
+  </main>
+  <script src="photos.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css?v=2">
+  <title>音乐播放器</title>
+</head>
+<body>
+  <main class="music glass-card" data-layout="medium">
+    <header class="music-head">
+      <span class="eyebrow">音乐</span>
+      <div class="header-actions">
+        <button id="open-player" class="icon-button" type="button"
+          title="打开播放器" aria-label="打开播放器">↗</button>
+        <button id="settings-button" class="icon-button" type="button"
+          title="音乐设置" aria-label="音乐设置">⚙</button>
+      </div>
+    </header>
+
+    <section class="player-content">
+      <figure class="cover-shell">
+        <img id="cover" alt="当前歌曲封面" draggable="false" hidden>
+        <div id="cover-fallback" class="cover-fallback" aria-hidden="true">
+          <span>♫</span>
+        </div>
+      </figure>
+
+      <div class="info-panel">
+        <div class="track-text">
+          <strong id="track-title">未连接播放器</strong>
+          <span id="track-artist">请在设置中选择应用</span>
+          <small id="track-album"></small>
+        </div>
+
+        <div class="timeline">
+          <input id="position" type="range" min="0" max="1000" value="0"
+            aria-label="播放进度">
+          <div><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
+        </div>
+
+        <div class="transport" aria-label="播放控制">
+          <button id="previous" type="button" title="上一首" aria-label="上一首">◀◀</button>
+          <button id="play-pause" class="play-button" type="button"
+            title="播放" aria-label="播放">▶</button>
+          <button id="next" type="button" title="下一首" aria-label="下一首">▶▶</button>
+        </div>
+
+        <div class="advanced-controls">
+          <button id="shuffle" class="state-button" type="button"
+            title="随机播放" aria-label="随机播放">⇄</button>
+          <button id="repeat" class="state-button" type="button"
+            title="循环播放" aria-label="循环播放">↻</button>
+          <label class="volume-control">
+            <span>音量</span>
+            <input id="volume" type="range" min="0" max="100" value="100"
+              aria-label="播放器音量">
+          </label>
+        </div>
+        <p id="player-status" class="player-status" role="status"></p>
+      </div>
+    </section>
+
+    <section id="settings" class="settings" hidden>
+      <header class="settings-head">
+        <div><span class="eyebrow">设置</span><strong>音乐播放器</strong></div>
+        <button id="close-settings" class="icon-button" type="button"
+          title="完成" aria-label="完成">✓</button>
+      </header>
+
+      <div class="layout-settings">
+        <span>选择后会自动调整小组件尺寸</span>
+        <div id="layout-options" class="layout-options">
+          <button class="layout-option" type="button" data-preset="compact">
+            <span class="layout-preview preview-compact"><i></i><b>♫</b></span>
+            <span><b>紧凑</b><small>封面与基本控制</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="medium">
+            <span class="layout-preview preview-medium"><i></i><b></b><em></em></span>
+            <span><b>横向</b><small>封面与歌曲信息</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="large">
+            <span class="layout-preview preview-large"><i></i><b></b><em></em><strong></strong></span>
+            <span><b>大型</b><small>完整播放控制</small></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="source-settings">
+        <div class="section-title"><span>播放器后端</span><small id="selected-source">自动选择</small></div>
+        <button id="auto-source" class="auto-source" type="button">
+          <span><strong>自动选择</strong><small>优先使用正在播放的应用</small></span>
+          <i>✓</i>
+        </button>
+        <span class="subheading">当前可控制的播放器</span>
+        <div id="running-players" class="option-list"></div>
+        <label class="browser-option">
+          <span><strong>显示浏览器媒体</strong><small>包括网页音乐和视频</small></span>
+          <input id="show-browsers" type="checkbox">
+        </label>
+      </div>
+
+      <div class="application-settings">
+        <span class="subheading">选择已安装的应用</span>
+        <input id="application-search" type="search" placeholder="搜索所有应用…"
+          aria-label="搜索已安装应用">
+        <div id="application-options" class="application-options"></div>
+        <p id="settings-status" class="settings-status" role="status"></p>
+      </div>
+
+      <label class="setting-slider">
+        <span>卡片透明度</span><output id="opacity-value">100%</output>
+        <input id="opacity" type="range" min="35" max="100" step="5">
+      </label>
+      <p class="privacy-note">Widget 仅通过系统 MPRIS 接口控制播放器，不会读取账号或音乐库密码。</p>
+    </section>
+  </main>
+  <script src="music.js?v=1"></script>
+</body>
+</html>

@@ -300,6 +300,8 @@ export var FileItem = class extends desktopIconItem.desktopIconItem {
                             Number(savedCoordinates[3]),
                             Number(savedCoordinates[4])
                         );
+                        if (savedCoordinates.length >= 6 && savedCoordinates[5])
+                            coordinates.push(String(savedCoordinates[5]));
                     }
                     return coordinates;
                 }
@@ -981,9 +983,12 @@ export var FileItem = class extends desktopIconItem.desktopIconItem {
         try {
             const info = new Gio.FileInfo();
             if (pos !== null) {
-                this._savedCoordinates = pos.length >= 5
-                    ? pos.slice(0, 5)
-                    : [pos[0], pos[1]];
+                if (pos.length >= 6)
+                    this._savedCoordinates = pos.slice(0, 6);
+                else if (pos.length >= 5)
+                    this._savedCoordinates = pos.slice(0, 5);
+                else
+                    this._savedCoordinates = [pos[0], pos[1]];
                 info.set_attribute_string(
                     'metadata::nautilus-icon-position',
                     this._savedCoordinates.join(',')

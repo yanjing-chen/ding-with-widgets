@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
+  <title>设备电量</title>
+</head>
+<body>
+  <main class="battery glass-card">
+    <header class="battery-head">
+      <div class="battery-title">
+        <span class="eyebrow">电池</span>
+      </div>
+      <div class="header-actions">
+        <button id="refresh-button" class="icon-button refresh-button" type="button"
+          title="刷新电量" aria-label="刷新电量">↻</button>
+        <button id="settings-button" class="icon-button" type="button"
+          title="电量设置" aria-label="电量设置">⚙</button>
+      </div>
+    </header>
+
+    <section id="devices" class="devices" aria-live="polite"></section>
+    <p id="updated" class="updated"></p>
+
+    <section id="settings" class="settings" hidden>
+      <header class="settings-head">
+        <div><span class="eyebrow">设置</span><strong>选择显示设备</strong></div>
+        <button id="close-settings" class="icon-button" type="button"
+          title="完成" aria-label="完成">✓</button>
+      </header>
+      <p class="settings-help">列表来自系统“电源”设置中当前已连接且能报告电量的设备。</p>
+      <div id="device-options" class="device-options"></div>
+      <div class="refresh-row">
+        <button id="refresh-devices" type="button">刷新设备</button>
+        <span id="settings-status" role="status" aria-live="polite"></span>
+      </div>
+      <label class="setting-slider">
+        <span>卡片透明度</span><output id="opacity-value">100%</output>
+        <input id="opacity" type="range" min="35" max="100" step="5">
+      </label>
+    </section>
+    <div class="glow"></div>
+  </main>
+  <script src="battery.js?v=2"></script>
+</body>
+</html>

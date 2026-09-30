@@ -4,27 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="../shared/glass.css?v=2">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=10">
   <title>日历</title>
 </head>
 <body>
-  <main id="calendar" class="calendar glass-card">
-    <header>
-      <div class="calendar-title">
-        <span id="weekday" class="eyebrow"></span>
-        <strong id="month"></strong>
+  <main id="calendar" class="calendar glass-card" data-layout="medium">
+    <section class="compact-view" aria-label="紧凑日历">
+      <header class="compact-head">
+        <span id="compact-month"></span>
+        <nav aria-label="紧凑型日历操作">
+          <button id="compact-today" class="compact-today-button" type="button">今天</button>
+          <button id="compact-add" class="agenda-add" type="button" title="添加安排" aria-label="添加安排">＋</button>
+          <button id="compact-settings" class="round-button" type="button" title="日历设置">⚙</button>
+        </nav>
+      </header>
+      <div class="compact-date">
+        <div class="compact-day-line">
+          <button id="compact-previous-day" class="compact-day-nav" type="button" title="前一天" aria-label="前一天">‹</button>
+          <strong id="compact-day"></strong>
+          <button id="compact-next-day" class="compact-day-nav" type="button" title="后一天" aria-label="后一天">›</button>
+        </div>
+        <span id="compact-weekday"></span>
+        <small id="compact-lunar"></small>
       </div>
-      <nav aria-label="月份导航">
-        <button id="previous" type="button" title="上个月" aria-label="上个月">‹</button>
-        <button id="today-button" type="button">今天</button>
-        <button id="next" type="button" title="下个月" aria-label="下个月">›</button>
-        <button id="settings-button" type="button" title="日历设置" aria-label="日历设置">⚙</button>
-      </nav>
-    </header>
-    <div class="divider"></div>
-    <div id="week" class="grid week"></div>
-    <div id="days" class="grid days"></div>
-    <section id="day-detail" class="day-detail" hidden></section>
+      <div id="compact-markers" class="compact-markers" aria-label="今日日程标记"></div>
+    </section>
+
+    <section class="calendar-layout" aria-label="月历">
+      <section class="month-panel">
+        <header class="calendar-head">
+          <div class="calendar-title">
+            <strong id="month"></strong>
+          </div>
+          <nav aria-label="月份导航">
+            <button id="previous" type="button" title="上个月" aria-label="上个月">‹</button>
+            <button id="today-button" type="button">今天</button>
+            <button id="next" type="button" title="下个月" aria-label="下个月">›</button>
+            <button id="add-event" class="agenda-add" type="button" title="添加安排" aria-label="添加安排">＋</button>
+            <button id="settings-button" type="button" title="日历设置" aria-label="日历设置">⚙</button>
+          </nav>
+        </header>
+        <div class="divider"></div>
+        <div id="week" class="grid week"></div>
+        <div id="days" class="grid days"></div>
+      </section>
+
+      <section class="schedule-panel" aria-label="所选日期的安排">
+        <header class="schedule-head">
+          <div>
+            <strong id="selected-heading"></strong>
+            <span id="selected-lunar"></span>
+          </div>
+        </header>
+        <div id="selected-events" class="event-list"></div>
+      </section>
+    </section>
+
+    <section id="event-popover" class="event-popover" hidden aria-live="polite">
+      <header>
+        <strong id="popover-heading"></strong>
+        <span id="popover-lunar"></span>
+      </header>
+      <div id="popover-events" class="event-list"></div>
+    </section>
+
     <p id="calendar-status" class="calendar-status"></p>
 
     <section id="settings" class="settings" hidden>
@@ -32,6 +75,35 @@
         <div><span class="eyebrow">日历</span><strong>显示设置</strong></div>
         <button id="close-settings" type="button" title="完成" aria-label="完成">✓</button>
       </div>
+
+      <section class="layout-settings">
+        <strong>日历样式</strong>
+        <span>选择后会自动调整小组件尺寸</span>
+        <div id="layout-options" class="layout-options">
+          <button class="layout-option" type="button" data-preset="compact">
+            <span class="layout-preview preview-compact">
+              <i></i><b>22</b><em></em>
+            </span>
+            <span><b>紧凑</b><small>日期与悬停日程彩条</small></span>
+            <i class="selected-mark">✓</i>
+          </button>
+          <button class="layout-option" type="button" data-preset="medium">
+            <span class="layout-preview preview-medium">
+              <i></i><em></em><em></em><em></em><em></em>
+            </span>
+            <span><b>月历</b><small>月份、日程彩条与悬停详情</small></span>
+            <i class="selected-mark">✓</i>
+          </button>
+          <button class="layout-option" type="button" data-preset="large">
+            <span class="layout-preview preview-large">
+              <i></i><em></em><em></em><em></em><strong></strong>
+            </span>
+            <span><b>月历与日程</b><small>左右分栏完整视图</small></span>
+            <i class="selected-mark">✓</i>
+          </button>
+        </div>
+      </section>
+
       <label class="switch-row"><span>显示农历</span><input id="show-lunar" type="checkbox"></label>
       <label class="switch-row"><span>显示传统节日与节气</span><input id="show-festivals" type="checkbox"></label>
       <label class="switch-row"><span>显示法定节假日</span><input id="show-statutory" type="checkbox"></label>
@@ -47,7 +119,25 @@
       </div>
       <p id="update-status" class="update-status" role="status"></p>
     </section>
+
+    <section id="event-editor" class="event-editor" hidden>
+      <form id="event-form" class="event-form">
+        <div class="settings-head">
+          <div><span class="eyebrow">日程</span><strong>新增安排</strong></div>
+          <button id="close-event-editor" type="button" title="取消" aria-label="取消">×</button>
+        </div>
+        <label><span>标题</span><input id="event-title" type="text" maxlength="160" required autofocus></label>
+        <label><span>日期</span><input id="event-date" type="date" required></label>
+        <div class="event-time-row">
+          <label><span>开始</span><input id="event-start" type="time" required></label>
+          <label><span>结束</span><input id="event-end" type="time" required></label>
+        </div>
+        <label><span>地点（可选）</span><input id="event-location" type="text" maxlength="160"></label>
+        <p id="event-editor-status" class="update-status" role="status"></p>
+        <button id="save-event" class="save-event" type="submit">添加到系统日历</button>
+      </form>
+    </section>
   </main>
-  <script src="calendar.js"></script>
+  <script src="calendar.js?v=11"></script>
 </body>
 </html>

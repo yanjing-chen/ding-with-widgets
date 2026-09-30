@@ -325,7 +325,12 @@ export var DesktopManager = class {
                     (area.width !== area2.width) ||
                     (area.height !== area2.height) ||
                     (area.scaleFactor !== area2.scaleFactor) ||
-                    (area.monitorIndex !== area2.monitorIndex)) {
+                    (area.monitorIndex !== area2.monitorIndex) ||
+                    (area.monitorId !== area2.monitorId) ||
+                    (area.monitorIdentityStable !==
+                        area2.monitorIdentityStable) ||
+                    (area.primaryMonitor !== area2.primaryMonitor) ||
+                    (area.primaryMonitorId !== area2.primaryMonitorId)) {
                     gridschanged.push(index);
                     continue;
                 }
@@ -375,6 +380,11 @@ export var DesktopManager = class {
 
     get primaryMonitorIndex() {
         return this._primaryScreen?.monitorIndex ?? this._primaryIndex;
+    }
+
+    get primaryMonitorId() {
+        return this._primaryScreen?.monitorIdentityStable
+            ? String(this._primaryScreen.monitorId ?? '') : '';
     }
 
     _configureSelectionColor() {
@@ -1349,6 +1359,7 @@ export var DesktopManager = class {
         const notAssignedYet = [];
         const displayCoordinates = new Map();
         const unavailableMonitorItems = new Set();
+        const legacyMonitorItems = new Set();
 
         // First, add those icons that fit in the current desktops
         for (const fileItem of fileList) {
@@ -1364,10 +1375,32 @@ export var DesktopManager = class {
             if (fileItem.savedCoordinates.length >= 5) {
                 const normalizedX = fileItem.savedCoordinates[2];
                 const normalizedY = fileItem.savedCoordinates[3];
-                const monitor = fileItem.savedCoordinates[4];
-                assignedDesktop = this._desktops.find(
-                    desktop => desktop.widgetMonitor === monitor
-                ) ?? null;
+                const monitorId = fileItem.savedCoordinates.length >= 6
+                    ? String(fileItem.savedCoordinates[5] ?? '') : '';
+                if (monitorId) {
+                    assignedDesktop = this._desktops.find(
+                        desktop => desktop.widgetMonitorId === monitorId
+                    ) ?? null;
+                } else {
+                    // Numeric monitor indexes are not stable across hot-plug
+                    // or a different physical display. Migrate legacy icon
+                    // positions to the current primary display once stable
+                    // physical identities are available. If monitor identity
+                    // discovery failed, retain the old numeric behavior and
+                    // wait instead of persisting a volatile fallback ID.
+                    const primaryDesktop = this._desktops.find(desktop =>
+                        desktop.widgetMonitorId === this.primaryMonitorId
+                    ) ?? null;
+                    if (primaryDesktop?.widgetMonitorIdentityStable) {
+                        assignedDesktop = primaryDesktop;
+                        legacyMonitorItems.add(fileItem);
+                    } else {
+                        assignedDesktop = this._desktops.find(desktop =>
+                            desktop.widgetMonitor ===
+                                Number(fileItem.savedCoordinates[4])
+                        ) ?? this._desktops[0] ?? null;
+                    }
+                }
                 if (assignedDesktop) {
                     [itemX, itemY] = assignedDesktop.coordinatesFromNormalized(
                         normalizedX,
@@ -1392,9 +1425,11 @@ export var DesktopManager = class {
                 if (desktop.getDistance(itemX, itemY) === 0) {
                     addedToDesktop = true;
                     const coordinatesAction =
-                        fileItem.savedCoordinates.length >= 5
-                            ? storeMode
-                            : Enums.StoredCoordinates.OVERWRITE;
+                        legacyMonitorItems.has(fileItem)
+                            ? Enums.StoredCoordinates.OVERWRITE
+                            : fileItem.savedCoordinates.length >= 6
+                                ? storeMode
+                                : Enums.StoredCoordinates.OVERWRITE;
                     desktop.addFileItemCloseTo(
                         fileItem,
                         itemX,
@@ -1414,10 +1449,11 @@ export var DesktopManager = class {
             let [itemX, itemY] = displayCoordinates.get(fileItem) ??
                 fileItem.savedCoordinates;
             let newDesktop = null;
-            if (unavailableMonitorItems.has(fileItem)) {
+            if (unavailableMonitorItems.has(fileItem) ||
+                legacyMonitorItems.has(fileItem)) {
                 newDesktop = this._desktops.find(
                     desktop =>
-                        desktop.widgetMonitor === this.primaryMonitorIndex
+                        desktop.widgetMonitorId === this.primaryMonitorId
                 ) ?? this._desktops[0] ?? null;
                 if (newDesktop && fileItem.savedCoordinates.length >= 5) {
                     [itemX, itemY] = newDesktop.coordinatesFromNormalized(
@@ -1444,9 +1480,11 @@ export var DesktopManager = class {
                 print('Not enough space to add icons');
                 break;
             } else {
-                const coordinatesAction = unavailableMonitorItems.has(fileItem)
-                    ? Enums.StoredCoordinates.PRESERVE
-                    : storeMode;
+                const coordinatesAction = legacyMonitorItems.has(fileItem)
+                    ? Enums.StoredCoordinates.OVERWRITE
+                    : unavailableMonitorItems.has(fileItem)
+                        ? Enums.StoredCoordinates.PRESERVE
+                        : storeMode;
                 newDesktop.addFileItemCloseTo(
                     fileItem,
                     itemX,

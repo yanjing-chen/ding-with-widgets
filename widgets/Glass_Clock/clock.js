@@ -1,6 +1,7 @@
 const locale = navigator.language || 'zh-CN';
 const defaults = {
   hour12: false,
+  displayStyle: 'digital',
   opacity: 1,
   locations: [
     {label: '上海', timeZone: 'Asia/Shanghai'},
@@ -19,6 +20,8 @@ const cityQuery = document.getElementById('city-query');
 const searchButton = document.getElementById('search-button');
 const searchResults = document.getElementById('search-results');
 const hour24 = document.getElementById('hour-24');
+const styleDigital = document.getElementById('style-digital');
+const styleAnalog = document.getElementById('style-analog');
 const error = document.getElementById('error');
 const clock = document.querySelector('.clock');
 const opacity = document.getElementById('opacity');
@@ -39,6 +42,7 @@ function cleanConfig(value) {
     : [];
   return {
     hour12: candidate.hour12 === true,
+    displayStyle: candidate.displayStyle === 'analog' ? 'analog' : 'digital',
     opacity: Math.min(1, Math.max(.35, Number(candidate.opacity) || 1)),
     locations: savedLocations.length ? savedLocations.slice(0, 12) : copy(defaults.locations),
   };
@@ -81,6 +85,26 @@ function dateText(date, timeZone) {
   }).format(date);
 }
 
+function analogDateText(date, timeZone) {
+  return new Intl.DateTimeFormat(locale, {
+    timeZone,
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
+
+function analogTimeParts(date, timeZone) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hourCycle: 'h23',
+  }).formatToParts(date);
+  const number = type => Number(parts.find(part => part.type === type)?.value ?? 0);
+  return {hour: number('hour'), minute: number('minute'), second: number('second')};
+}
+
 function zoneOffset(date, timeZone) {
   try {
     const name = new Intl.DateTimeFormat(locale, {
@@ -93,9 +117,7 @@ function zoneOffset(date, timeZone) {
   }
 }
 
-function renderClocks() {
-  const now = new Date();
-  locations.replaceChildren(...config.locations.map(item => {
+function createDigitalClock(item, now) {
     const row = document.createElement('article');
     row.className = 'location-row';
 
@@ -111,7 +133,60 @@ function renderClocks() {
     time.textContent = timeParts(now, item.timeZone);
     row.append(place, time);
     return row;
-  }));
+}
+
+function createAnalogFace(item, now) {
+  const card = document.createElement('article');
+  card.className = 'analog-location';
+
+  const face = document.createElement('div');
+  face.className = 'analog-face';
+  face.setAttribute('aria-label', `${item.label} ${timeParts(now, item.timeZone)}`);
+
+  for (let number = 1; number <= 12; number++) {
+    const numeral = document.createElement('span');
+    numeral.className = 'clock-number';
+    numeral.textContent = String(number);
+    const radians = number * Math.PI / 6;
+    numeral.style.left = `${50 + Math.sin(radians) * 38}%`;
+    numeral.style.top = `${50 - Math.cos(radians) * 38}%`;
+    face.append(numeral);
+  }
+
+  const {hour, minute, second} = analogTimeParts(now, item.timeZone);
+  const period = document.createElement('span');
+  period.className = 'clock-period';
+  period.textContent = hour < 12 ? 'AM' : 'PM';
+  const hourHand = document.createElement('i');
+  hourHand.className = 'clock-hand hour-hand';
+  hourHand.style.setProperty('--hand-angle', `${(hour % 12 + minute / 60) * 30}deg`);
+  const minuteHand = document.createElement('i');
+  minuteHand.className = 'clock-hand minute-hand';
+  minuteHand.style.setProperty('--hand-angle', `${(minute + second / 60) * 6}deg`);
+  const secondHand = document.createElement('i');
+  secondHand.className = 'clock-hand second-hand';
+  secondHand.style.setProperty('--hand-angle', `${second * 6}deg`);
+  const pin = document.createElement('i');
+  pin.className = 'clock-pin';
+  face.append(period, hourHand, minuteHand, secondHand, pin);
+
+  const name = document.createElement('strong');
+  name.textContent = item.label;
+  const date = document.createElement('small');
+  date.textContent = analogDateText(now, item.timeZone);
+  card.append(face, name, date);
+  return card;
+}
+
+function renderClocks() {
+  const now = new Date();
+  const analog = config.displayStyle === 'analog';
+  locations.classList.toggle('analog-locations', analog);
+  clock.classList.toggle('analog-mode', analog);
+  locations.replaceChildren(...config.locations.map(item => analog
+    ? createAnalogFace(item, now)
+    : createDigitalClock(item, now)
+  ));
 }
 
 function renderEditor() {
@@ -139,6 +214,9 @@ function renderEditor() {
     return row;
   }));
   hour24.checked = !config.hour12;
+  styleDigital.checked = config.displayStyle === 'digital';
+  styleAnalog.checked = config.displayStyle === 'analog';
+  hour24.disabled = config.displayStyle === 'analog';
 }
 
 function saveAndRender() {
@@ -165,6 +243,14 @@ closeSettings.addEventListener('click', hideSettings);
 hour24.addEventListener('change', () => {
   config.hour12 = !hour24.checked;
   saveAndRender();
+});
+document.querySelectorAll('input[name="clock-style"]').forEach(input => {
+  input.addEventListener('change', () => {
+    if (!input.checked)
+      return;
+    config.displayStyle = input.value === 'analog' ? 'analog' : 'digital';
+    saveAndRender();
+  });
 });
 opacity.addEventListener('input', () => {
   config.opacity = Math.min(1, Math.max(.35, Number(opacity.value) / 100));

@@ -6,7 +6,7 @@
     "settings-schema": "org.gnome.shell.extensions.dingwithwidgets",
     "gettext-domain": "ding",
     "session-modes": ["user"],
-    "version": 23,
-    "version-name": "0.7.16",
+    "version": 100,
+    "version-name": "1.0.0",
     "url": "https://github.com/yanjing-chen/ding-with-widgets"
 }

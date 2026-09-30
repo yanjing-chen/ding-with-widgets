@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../shared/glass.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
+  <title>系统监控</title>
+</head>
+<body>
+  <main class="system-monitor glass-card" data-layout="large">
+    <header class="monitor-head">
+      <strong>系统监控</strong>
+      <div class="head-actions">
+        <span id="updated" class="updated">正在读取…</span>
+        <button id="refresh-button" class="icon-button" type="button" title="立即刷新">↻</button>
+        <button id="settings-button" class="icon-button" type="button" title="设置">⚙</button>
+      </div>
+    </header>
+
+    <section id="dashboard" class="dashboard">
+      <article id="gauges-card" class="metric-card gauges-card">
+        <div id="cpu-panel" class="gauge-panel" data-metric="cpu">
+          <div id="cpu-ring" class="usage-ring cpu-ring">
+            <div><span>CPU</span><strong id="cpu-value">--%</strong></div>
+          </div>
+          <small id="cpu-detail">正在建立采样</small>
+        </div>
+        <div id="gpu-panel" class="gauge-panel" data-metric="gpu">
+          <div id="gpu-ring" class="usage-ring gpu-ring">
+            <div><span id="gpu-label">GPU</span><strong id="gpu-value">--%</strong></div>
+          </div>
+          <small id="gpu-name">正在识别显卡</small>
+        </div>
+      </article>
+
+      <div id="resources-column" class="resources-column">
+        <article id="memory-card" class="metric-card memory-card" data-metric="memory">
+          <div id="memory-ring" class="mini-usage-ring memory-mini-ring" aria-hidden="true"><i></i></div>
+          <div class="resource-body">
+            <div class="resource-head"><strong>内存</strong><span id="memory-value">-- / --</span></div>
+            <div class="progress-track"><i id="memory-progress"></i></div>
+            <small><span id="memory-percent">--%</span> 已使用</small>
+          </div>
+        </article>
+
+        <article id="disk-card" class="metric-card disk-card" data-metric="disk">
+          <div class="disk-summary">
+            <div id="storage-ring" class="mini-usage-ring storage-mini-ring" aria-hidden="true"><i></i></div>
+            <div class="resource-body">
+              <div class="resource-head"><strong>磁盘</strong><span id="storage-value">-- / --</span></div>
+              <div class="progress-track disk-progress"><i id="storage-progress"></i></div>
+            </div>
+          </div>
+          <div class="disk-speeds">
+            <span><em>↓</em> 读取 <b id="disk-read">--</b></span>
+            <span><em>↑</em> 写入 <b id="disk-write">--</b></span>
+          </div>
+          <small id="disk-label">全部物理磁盘</small>
+        </article>
+      </div>
+
+      <article id="network-card" class="metric-card network-card" data-metric="network">
+        <div class="network-head">
+          <div><strong>网络</strong><small id="network-label">自动选择活动网络</small></div>
+          <div class="network-values">
+            <span><em>↓</em> 下载 <b id="network-down">--</b></span>
+            <span><em>↑</em> 上传 <b id="network-up">--</b></span>
+          </div>
+        </div>
+        <canvas id="network-chart" aria-label="最近一分钟网络速度曲线"></canvas>
+      </article>
+      <p id="empty-state" class="empty-state" hidden>请在设置中至少选择一个监控项目</p>
+    </section>
+    <p id="status" class="status" role="status"></p>
+
+    <section id="settings" class="settings" hidden>
+      <header class="settings-head">
+        <div><span class="eyebrow">设置</span><strong>系统监控</strong></div>
+        <div class="settings-actions">
+          <button id="refresh-devices" class="text-button" type="button">刷新设备</button>
+          <button id="close-settings" class="icon-button" type="button" title="完成">✓</button>
+        </div>
+      </header>
+
+      <div class="layout-settings">
+        <span class="section-label">尺寸</span>
+        <div id="layout-options" class="layout-options">
+          <button class="layout-option" type="button" data-preset="compact">
+            <span class="layout-preview preview-compact"><i></i><b></b><em></em></span>
+            <span><b>紧凑</b><small>纵向排列</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="medium">
+            <span class="layout-preview preview-medium"><i></i><b></b><em></em></span>
+            <span><b>中等</b><small>双栏布局</small></span>
+          </button>
+          <button class="layout-option" type="button" data-preset="large">
+            <span class="layout-preview preview-large"><i></i><b></b><em></em></span>
+            <span><b>大型</b><small>方案 B 完整布局</small></span>
+          </button>
+        </div>
+      </div>
+
+      <fieldset class="metric-settings">
+        <legend>显示项目</legend>
+        <div id="metric-options" class="metric-options">
+          <label><span><i class="dot cpu"></i>CPU</span><input type="checkbox" value="cpu"></label>
+          <label><span><i class="dot memory"></i>内存</span><input type="checkbox" value="memory"></label>
+          <label><span><i class="dot gpu"></i>显卡</span><input type="checkbox" value="gpu"></label>
+          <label><span><i class="dot disk"></i>磁盘</span><input type="checkbox" value="disk"></label>
+          <label><span><i class="dot network"></i>网络</span><input type="checkbox" value="network"></label>
+        </div>
+      </fieldset>
+
+      <div class="device-settings">
+        <label><span>显卡</span><select id="gpu-device"><option value="auto">自动选择</option></select></label>
+        <label><span>磁盘速度来源</span><select id="disk-device"><option value="all">全部物理磁盘</option></select></label>
+        <label><span>网络</span><select id="network-device"><option value="auto">自动选择活动网络</option></select></label>
+        <label><span>刷新频率</span><select id="refresh-interval">
+          <option value="1">每 1 秒</option><option value="2">每 2 秒</option>
+          <option value="3">每 3 秒</option><option value="5">每 5 秒</option>
+        </select></label>
+      </div>
+
+      <label class="setting-slider">
+        <span>卡片透明度</span><output id="opacity-value">100%</output>
+        <input id="opacity" type="range" min="35" max="100" step="5">
+      </label>
+      <p id="settings-status" class="settings-status" role="status"></p>
+      <p class="privacy-note">磁盘容量显示系统根文件系统的已用量与总量；读写速度按所选物理磁盘统计。所有数据仅在本机读取。</p>
+    </section>
+  </main>
+  <script src="monitor.js?v=3"></script>
+</body>
+</html>

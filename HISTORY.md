@@ -1,5 +1,12 @@
 # History of versions #
 
+* Version 1.0.0 (2026-10-01)
+  * First stable release of DING with Widgets
+  * Eight Chinese desktop widgets with persistent content, size and position
+  * Stable physical-monitor identity for desktop icons and widgets
+  * Multi-monitor creation, direct dragging, disconnect fallback and reconnect restoration
+  * GNOME Shell 50 and 51 support under Wayland
+
 * Version 51.0.8 (2026-09-09)
   * Allows to change the extension name (needed for ubuntu .deb package)
   * Updated .po files

@@ -23,7 +23,6 @@ import GLibUnix from 'gi://GLibUnix';
 import Gtk from 'gi://Gtk?version=4.0';
 import Gdk from 'gi://Gdk?version=4.0';
 import Gio from 'gi://Gio';
-import Adw from 'gi://Adw?version=1';
 
 import * as dndClipboardUtils from './dndClipboardUtils.js';
 import * as FileItem from './fileItem.js';
@@ -84,10 +83,14 @@ export var DesktopManager = class {
         this._popupCounter = 0;
 
         this.dbusManager = dbusManager;
-        this._cssColorProviderSelection = null;
-        this._adwStyleManager = Adw.StyleManager.get_default();
-        this._adwStyleManager.connect('notify::accent-color-rgba',
-            () => this._configureSelectionColor());
+        // Keep desktop selection neutral, like Ubuntu's stock DING.  Desktop
+        // icons must not inherit the current libadwaita accent colour.
+        this.selectColor = new Gdk.RGBA({
+            red: 0.30,
+            green: 0.30,
+            blue: 0.30,
+            alpha: 1.0,
+        });
 
         this.autoAr = new AutoAr.AutoAr(this);
 
@@ -224,7 +227,6 @@ export var DesktopManager = class {
         cssProvider.load_from_file(Gio.File.new_for_path(GLib.build_filenamev([codePath, 'stylesheet.css'])));
         Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), cssProvider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
         cssProvider = undefined;
-        this._configureSelectionColor();
         this._createGridWindows();
 
         DBusUtils.GtkVfsMetadata.connectSignalToProxy('AttributeChanged', this._metadataChanged.bind(this));
@@ -385,35 +387,6 @@ export var DesktopManager = class {
     get primaryMonitorId() {
         return this._primaryScreen?.monitorIdentityStable
             ? String(this._primaryScreen.monitorId ?? '') : '';
-    }
-
-    _configureSelectionColor() {
-        if (this._cssColorProviderSelection !== null) {
-            Gtk.StyleContext.remove_provider_for_display(
-                Gdk.Display.get_default(),
-                this._cssColorProviderSelection
-            );
-        }
-
-        this.selectColor = this._adwStyleManager.get_accent_color_rgba();
-        const cssColorDefinition =
-            `@define-color desktop_icons_bg_color ${this.selectColor.to_string()};\n`;
-        this._cssColorProviderSelection = new Gtk.CssProvider();
-        // fix for api change Gtk 4.9
-        try {
-            this._cssColorProviderSelection.load_from_data(cssColorDefinition);
-        } catch {
-            const gsizeLength = -1; // NULL terminated string
-            this._cssColorProviderSelection.load_from_data(
-                cssColorDefinition,
-                gsizeLength
-            );
-        }
-        Gtk.StyleContext.add_provider_for_display(
-            Gdk.Display.get_default(),
-            this._cssColorProviderSelection,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        );
     }
 
     clearFileCoordinates(fileList, dropCoordinates) {

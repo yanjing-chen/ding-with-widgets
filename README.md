@@ -4,11 +4,11 @@
 
 本项目是 [`rastersoft/desktop-icons-ng`](https://gitlab.com/rastersoft/desktop-icons-ng) 的非官方衍生版本，并参考了 [`smedius/desktop-icons-ng`](https://gitlab.com/smedius/desktop-icons-ng) 的 GTK4 Widget 架构思路。它不是 GNOME、Canonical、Apple 或上述上游项目的官方产品。
 
-## 1.0.0 正式版
+## 1.0.1 正式版
 
-1.0.0 是第一个正式版本，以 GTK4 DING 为基础，整合桌面图标管理和八个中文桌面 Widget。它保留经过测试的 Alpha 7.3 功能，不再增加新的功能性改动。
+1.0.1 保留 1.0.0 的 Widget、多屏幕和桌面管理功能，仅修正两处桌面图标交互细节：选中图标与框选区域固定使用中性灰底、白色边框，不再跟随系统主题强调色；拖动文件时显示真实文件图标和名称，不再退化为通用文件图标。
 
-本版重点解决多屏幕物理身份问题：桌面图标和 Widget 会记录所属显示器的硬件身份，而不是只记录可能随热插拔变化的数字编号。副屏断开后，其内容会临时显示在主屏；同一块副屏接回后恢复原归属和位置。详细内容见 [`RELEASE_NOTES_1.0.0.md`](RELEASE_NOTES_1.0.0.md)。
+1.0.0 引入的多屏幕物理身份记录、跨屏幕拖动和八个中文 Widget 均保持不变。详细内容见 [`RELEASE_NOTES_1.0.1.md`](RELEASE_NOTES_1.0.1.md)；首个正式版本的说明仍可参阅 [`RELEASE_NOTES_1.0.0.md`](RELEASE_NOTES_1.0.0.md)。
 
 ## 主要功能
 
@@ -32,7 +32,7 @@
 
 - 名称：`DING with Widgets`
 - UUID：`ding-with-widgets@yanjing_chen.qq.com`
-- 当前正式版本：`1.0.0`
+- 当前正式版本：`1.0.1`
 
 ## 系统要求
 
@@ -48,7 +48,7 @@
 
 ### 从 Release 安装（推荐）
 
-1. 下载对应版本的 ZIP：`ding-with-widgets-v1.0.0-gnome50-51.zip`。
+1. 下载对应版本的 ZIP：`ding-with-widgets-v1.0.1-gnome50-51.zip`。
 2. 打开终端并安装依赖：
 
 ```bash
@@ -60,7 +60,7 @@ sudo apt install gjs meson ninja-build libglib2.0-bin gir1.2-webkit-6.0 gir1.2-e
 
 ```bash
 cd ~/下载
-unzip -o ding-with-widgets-v1.0.0-gnome50-51.zip
+unzip -o ding-with-widgets-v1.0.1-gnome50-51.zip
 cd ding-with-widgets
 chmod +x install-local-test.sh
 ./install-local-test.sh

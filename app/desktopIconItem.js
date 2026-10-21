@@ -57,6 +57,7 @@ export var desktopIconItem = class desktopIconItem extends SignalManager.SignalM
         this._dropCoordinates = null;
         this._destroyed = false;
         this._relativeX = 0.5;
+        this._dragIcon = null;
     }
 
     /** *********************
@@ -87,6 +88,9 @@ export var desktopIconItem = class desktopIconItem extends SignalManager.SignalM
         }
         /* Disconnect signals */
         this.disconnectAllSignals();
+        if (this._dragIcon)
+            this._dragIcon.set_widget(null);
+        this._dragIcon = null;
         this.container = null;
         this._icon = null;
         this._label = null;
@@ -431,10 +435,27 @@ export var desktopIconItem = class desktopIconItem extends SignalManager.SignalM
             return dndClipboardUtils.loadDragData({fileList: selection, specialFilesSelected: this._desktopManager.checkIfSpecialFilesAreSelected()});
         });
         this.connectSignal(dragController, 'drag-begin', () => {
+            // GTK's fallback icon for a URI drag is a generic file.  Use a
+            // short-lived paintable of the desktop item so the real icon and
+            // label remain visible while dragging.  Unlike the old persistent
+            // WidgetPaintable implementation, this has no invalidate-size
+            // signal and is detached as soon as the drag finishes.
+            if (this._dragIcon)
+                this._dragIcon.set_widget(null);
+            this._dragIcon = Gtk.WidgetPaintable.new(widget);
+            dragController.set_icon(
+                this._dragIcon,
+                Math.round(this._buttonPressInitialX ?? 0),
+                Math.round(this._buttonPressInitialY ?? 0)
+            );
             this._desktopManager.onDragBegin(this);
         });
         this.connectSignal(dragController, 'drag-end', () => {
             this._desktopManager.onDragEnd();
+            dragController.set_icon(null, 0, 0);
+            if (this._dragIcon)
+                this._dragIcon.set_widget(null);
+            this._dragIcon = null;
         });
     }
 

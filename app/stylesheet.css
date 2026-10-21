@@ -44,13 +44,13 @@ window.testwindow {
 }
 
 .desktop-icons-selected {
-    background-color: alpha(@desktop_icons_bg_color, 0.5);
-    border-color: alpha(@desktop_icons_bg_color, 0.0);
+    background-color: rgba(77, 77, 77, 0.55);
+    border-color: rgba(255, 255, 255, 0.9);
 }
 
 .desktop-icons-selected-keyboard:not(:backdrop) {
-    background-color: alpha(@desktop_icons_bg_color, 0.5);
-    border-color: alpha(@desktop_icons_bg_color, 0.8);
+    background-color: rgba(77, 77, 77, 0.55);
+    border-color: rgba(255, 255, 255, 0.9);
 }
 
 .ding-widget-frame {

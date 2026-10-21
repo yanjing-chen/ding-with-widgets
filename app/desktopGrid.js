@@ -647,10 +647,10 @@ class PaintContainer extends Gtk.Widget {
                 fillColor.alpha = 0.3;
 
                 const borderColor = new Gdk.RGBA();
-                borderColor.red = dm.selectColor.red;
-                borderColor.green = dm.selectColor.green;
-                borderColor.blue = dm.selectColor.blue;
-                borderColor.alpha = 1.0;
+                borderColor.red = 1.0;
+                borderColor.green = 1.0;
+                borderColor.blue = 1.0;
+                borderColor.alpha = 0.9;
 
                 this._snapshotRoundedRect(snapshot,
                     xInit, yInit, xFin - xInit, yFin - yInit,
@@ -667,10 +667,10 @@ class PaintContainer extends Gtk.Widget {
                 fillColor.alpha = 0.4;
 
                 const borderColor = new Gdk.RGBA();
-                borderColor.red = dm.selectColor.red;
-                borderColor.green = dm.selectColor.green;
-                borderColor.blue = dm.selectColor.blue;
-                borderColor.alpha = 1.0;
+                borderColor.red = 1.0;
+                borderColor.green = 1.0;
+                borderColor.blue = 1.0;
+                borderColor.alpha = 0.9;
 
                 this._snapshotRoundedRect(snapshot,
                     x, y, grid._elementWidth, grid._elementHeight,

@@ -2,9 +2,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 12px 13px 22px;
+  padding: 12px 13px 21px;
   overflow: hidden;
 }
+
 .monitor-head, .settings-head {
   display: flex;
   align-items: center;
@@ -30,52 +31,51 @@ button, select, input { font: inherit; }
 .icon-button:hover, .text-button:hover { background: rgba(255,255,255,.18); }
 .icon-button:disabled { opacity: .45; }
 
+/* 中型：C 图第二个方案——三条横向指标面板。 */
 .dashboard {
   display: grid;
-  grid-template-columns: 145px 215px minmax(250px, 1fr);
+  grid-template-rows: none;
+  grid-auto-rows: minmax(0,1fr);
   flex: 1;
   min-height: 0;
-  gap: 9px;
-  margin-top: 5px;
+  gap: 8px;
+  margin-top: 6px;
 }
-.dashboard.no-gauges { grid-template-columns: 215px minmax(250px,1fr); }
-.dashboard.no-resources { grid-template-columns: 145px minmax(250px,1fr); }
-.dashboard.no-network { grid-template-columns: 145px minmax(215px,1fr); }
-.dashboard.no-gauges.no-resources,
-.dashboard.no-gauges.no-network,
-.dashboard.no-resources.no-network { grid-template-columns: minmax(0,1fr); }
-.metric-card {
+.metric-card, .resources-column {
   min-width: 0;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.25);
+  border: 1px solid rgba(255,255,255,.24);
   border-radius: 17px;
-  background: rgba(255,255,255,.13);
-  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 6px 16px rgba(0,0,0,.08);
+  background: rgba(255,255,255,.11);
+  box-shadow: inset 0 1px rgba(255,255,255,.15), 0 5px 14px rgba(0,0,0,.06);
 }
 .metric-card[hidden], [data-metric][hidden], .resources-column[hidden] { display: none !important; }
 
-.gauges-card {
+.gauges-card, .resources-column {
   display: grid;
-  grid-template-rows: repeat(2,minmax(0,1fr));
-  align-items: stretch;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  min-height: 0;
 }
+.gauges-card.single,
+.resources-column.only-memory,
+.resources-column.only-disk { grid-template-columns: minmax(0,1fr); }
+.gauges-card.single .gauge-panel,
+.resources-column.only-memory .memory-card,
+.resources-column.only-disk .disk-card { border-left: 0; }
 .gauge-panel {
   display: grid;
-  place-items: center;
-  align-content: center;
+  grid-template-columns: 43px minmax(64px,.72fr) minmax(64px,1fr);
+  align-items: center;
   min-width: 0;
-  gap: 2px;
-  padding: 4px;
+  gap: 8px;
+  padding: 9px 11px;
 }
-.gauge-panel + .gauge-panel { border-top: 1px solid rgba(255,255,255,.16); }
-.gauge-panel > small {
-  display: none;
-}
-.gauges-card.single { grid-template-rows: 1fr; }
-.gauges-card.single .gauge-panel { border-top: 0; }
+.gauge-panel + .gauge-panel,
+.resources-column > .metric-card + .metric-card { border-left: 1px solid rgba(255,255,255,.17); }
+
 .usage-ring {
   --usage: 0deg;
-  display: grid;
+  display: none;
   place-items: center;
   width: 64px;
   height: 64px;
@@ -97,129 +97,265 @@ button, select, input { font: inherit; }
 .usage-ring span { color: rgba(20,20,24,.72); font-size: 8px; font-weight: 750; }
 .usage-ring strong { color: rgba(20,20,24,.95); font-size: 13px; font-variant-numeric: tabular-nums; }
 
-.resources-column { display: grid; grid-template-rows: 72px minmax(0,1fr); min-width: 0; gap: 8px; }
-.resources-column.only-memory { grid-template-rows: 1fr; }
-.resources-column.only-disk { grid-template-rows: 1fr; }
-.memory-card, .disk-card { padding: 8px 10px; }
+.metric-glyph {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #24bf7b;
+  background: rgba(45,203,137,.13);
+}
+.metric-glyph svg, .mini-usage-ring svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gpu-glyph { color: #348cff; background: rgba(52,140,255,.13); }
+.metric-copy { display: grid; min-width: 0; align-content: center; gap: 1px; }
+.metric-copy strong { overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.metric-copy b { font-size: 15px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.metric-copy small { overflow: hidden; color: var(--secondary); font-size: 6px; text-overflow: ellipsis; white-space: nowrap; }
+.mini-chart { display: block; width: 100%; height: 46px; min-width: 0; }
+
+.resources-column > .metric-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
 .memory-card {
   display: grid;
-  grid-template-columns: 42px minmax(0,1fr);
+  grid-template-columns: 43px minmax(74px,.9fr) minmax(64px,1fr);
   align-items: center;
   gap: 8px;
+  padding: 9px 11px;
 }
 .resource-body { min-width: 0; }
-.resource-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
-.resource-head strong { font-size: 11px; }
-.resource-head span { overflow: hidden; font-size: 9px; font-weight: 700; font-variant-numeric: tabular-nums; text-overflow: ellipsis; white-space: nowrap; }
-.progress-track { height: 7px; margin-top: 6px; overflow: hidden; border-radius: 999px; background: rgba(100,120,155,.18); }
+.resource-head { display: grid; min-width: 0; gap: 2px; }
+.resource-head strong { font-size: 10px; }
+.resource-head span {
+  overflow: hidden;
+  font-size: 9px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.progress-track { height: 3px; margin-top: 5px; overflow: hidden; border-radius: 999px; background: rgba(100,120,155,.18); }
 .progress-track i { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg,#7b70e8,#3c94ff); transition: width .35s ease; }
 .disk-progress i { background: linear-gradient(90deg,#a772ed,#795bea); }
-.resource-body > small { display: block; margin-top: 3px; color: var(--secondary); font-size: 6px; text-align: right; }
+.resource-body > small { display: block; margin-top: 3px; color: var(--secondary); font-size: 6px; }
 .mini-usage-ring {
   --usage: 0deg;
-  position: relative;
-  width: 39px;
-  height: 39px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
   flex: none;
   border-radius: 50%;
-  background: conic-gradient(#8a7cf0 var(--usage), rgba(130,145,175,.18) 0);
+  color: #8757eb;
+  background: rgba(136,87,235,.13);
 }
-.mini-usage-ring::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background: rgba(238,241,247,.88);
-}
-.storage-mini-ring { background: conic-gradient(#9b70e8 var(--usage), rgba(130,145,175,.18) 0); }
-.disk-card { position: relative; display: flex; flex-direction: column; }
-.disk-summary { display: grid; grid-template-columns: 42px minmax(0,1fr); align-items: center; gap: 8px; }
-.disk-speeds { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 7px; font-size: 7px; white-space: nowrap; }
-.disk-speeds span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.disk-speeds em { color: #328eff; font-size: 12px; font-style: normal; }
-.disk-speeds span + span em { color: #32c889; }
-.disk-speeds b { font-size: 8px; font-variant-numeric: tabular-nums; }
-.disk-card > small { margin-top: auto; overflow: hidden; color: var(--secondary); font-size: 6px; text-overflow: ellipsis; white-space: nowrap; }
+.mini-usage-ring svg { width: 22px; height: 22px; }
 
-.network-card { display: grid; grid-template-rows: auto minmax(0,1fr); padding: 10px 12px 8px; }
+.disk-card {
+  display: grid;
+  grid-template-columns: minmax(115px,.95fr) minmax(64px,1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  gap: 2px 8px;
+  padding: 9px 11px;
+}
+.disk-summary { display: grid; grid-template-columns: 43px minmax(0,1fr); align-items: center; gap: 8px; min-width: 0; }
+#disk-chart { grid-column: 2; grid-row: 1 / 3; }
+.disk-speeds { display: flex; grid-column: 1; gap: 6px; margin-left: 51px; font-size: 6px; white-space: nowrap; }
+.disk-speeds span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.disk-speeds em { color: #328eff; font-size: 10px; font-style: normal; }
+.disk-speeds span + span em { color: #32c889; }
+.disk-speeds b { font-size: 6px; font-variant-numeric: tabular-nums; }
+.disk-card > small { display: none; }
+
+.network-card { display: grid; grid-template-rows: auto minmax(0,1fr); padding: 9px 11px 7px; }
 .network-head { display: flex; align-items: start; justify-content: space-between; gap: 8px; }
 .network-head > div:first-child { display: grid; min-width: 0; gap: 1px; }
 .network-head strong { font-size: 11px; }
-.network-head small { overflow: hidden; color: var(--secondary); font-size: 7px; text-overflow: ellipsis; white-space: nowrap; }
-.network-values { display: flex; flex: none; gap: 7px; font-size: 7px; white-space: nowrap; }
+.network-head small { overflow: hidden; color: var(--secondary); font-size: 6px; text-overflow: ellipsis; white-space: nowrap; }
+.network-values { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); flex: 1; max-width: 66%; gap: 10px; font-size: 7px; white-space: nowrap; }
+.network-values span { min-width: 0; overflow: hidden; text-align: center; text-overflow: ellipsis; }
 .network-values em { color: #318fff; font-size: 12px; font-style: normal; }
 .network-values span + span em { color: #35c98d; }
 .network-values b { font-size: 8px; font-variant-numeric: tabular-nums; }
-#network-chart { width: 100%; height: 100%; min-height: 82px; }
+.network-charts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); min-height: 0; gap: 12px; }
+.network-charts canvas { width: 100%; height: 100%; min-height: 48px; }
+
 .status { position: absolute; right: 16px; bottom: 7px; left: 16px; min-height: 8px; margin: 0; overflow: hidden; color: var(--secondary); font-size: 7px; text-align: right; text-overflow: ellipsis; white-space: nowrap; }
 .empty-state { grid-column: 1/-1; place-self: center; color: var(--secondary); font-size: 11px; }
 
+/* 紧凑型：A 图第一个方案——四个指标卡片加底部网络区。 */
+.system-monitor[data-layout="compact"] { padding: 11px 11px 20px; }
+.system-monitor[data-layout="compact"] .monitor-head > strong { font-size: 17px; }
+.system-monitor[data-layout="compact"] .updated { display: none; }
+.system-monitor[data-layout="compact"] .dashboard {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  grid-template-rows: none;
+  grid-auto-rows: minmax(0,1fr);
+  gap: 7px;
+  margin-top: 6px;
+}
+.system-monitor[data-layout="compact"] .gauges-card,
+.system-monitor[data-layout="compact"] .resources-column { display: contents; }
+.system-monitor[data-layout="compact"] .gauge-panel,
+.system-monitor[data-layout="compact"] .resources-column > .metric-card,
+.system-monitor[data-layout="compact"] .network-card {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 16px;
+  background: rgba(255,255,255,.11);
+  box-shadow: inset 0 1px rgba(255,255,255,.15), 0 5px 14px rgba(0,0,0,.06);
+}
+.system-monitor[data-layout="compact"] .gauge-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  align-content: center;
+  gap: 0;
+  padding: 5px;
+}
+.system-monitor[data-layout="compact"] .gauge-panel + .gauge-panel,
+.system-monitor[data-layout="compact"] .resources-column > .metric-card + .metric-card { border-left: 1px solid rgba(255,255,255,.24); }
+.system-monitor[data-layout="compact"] .gauges-card.single > .gauge-panel,
+.system-monitor[data-layout="compact"] .resources-column.only-memory > .memory-card,
+.system-monitor[data-layout="compact"] .resources-column.only-disk > .disk-card { grid-column: 1 / -1; }
+.system-monitor[data-layout="compact"] .usage-ring { display: grid; width: 70px; height: 70px; }
+.system-monitor[data-layout="compact"] .usage-ring::before { width: 54px; height: 54px; }
+.system-monitor[data-layout="compact"] .usage-ring span { font-size: 9px; }
+.system-monitor[data-layout="compact"] .usage-ring strong { font-size: 16px; }
+.system-monitor[data-layout="compact"] .metric-glyph,
+.system-monitor[data-layout="compact"] .metric-copy,
+.system-monitor[data-layout="compact"] .gauge-panel .mini-chart { display: none; }
+
+.system-monitor[data-layout="compact"] .memory-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0,1fr);
+  align-items: center;
+  gap: 7px;
+  padding: 8px;
+}
+.system-monitor[data-layout="compact"] .mini-usage-ring {
+  width: 39px;
+  height: 39px;
+  background: conic-gradient(#8a7cf0 var(--usage), rgba(130,145,175,.18) 0);
+}
+.system-monitor[data-layout="compact"] .mini-usage-ring::after {
+  content: "";
+  grid-area: 1/1;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: rgba(238,241,247,.88);
+}
+.system-monitor[data-layout="compact"] .mini-usage-ring svg,
+.system-monitor[data-layout="compact"] .memory-card .mini-chart,
+.system-monitor[data-layout="compact"] #disk-chart { display: none; }
+.system-monitor[data-layout="compact"] .resource-head { gap: 1px; }
+.system-monitor[data-layout="compact"] .resource-head strong { font-size: 12px; }
+.system-monitor[data-layout="compact"] .resource-head span { font-size: 9px; white-space: normal; }
+.system-monitor[data-layout="compact"] .resource-body > small { font-size: 9px; }
+.system-monitor[data-layout="compact"] .progress-track { height: 3px; margin-top: 4px; }
+
+.system-monitor[data-layout="compact"] .disk-card {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: 8px;
+}
+.system-monitor[data-layout="compact"] .disk-summary {
+  align-self: center;
+  width: 100%;
+  grid-template-columns: 42px minmax(0,1fr);
+  gap: 7px;
+  margin: 0;
+}
+.system-monitor[data-layout="compact"] .disk-speeds {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  gap: clamp(2px, 2vw, 10px);
+  margin: 0;
+  font-size: 8px;
+}
+.system-monitor[data-layout="compact"] .disk-speeds span {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 0;
+  gap: 2px;
+}
+.system-monitor[data-layout="compact"] .disk-speeds span + span { justify-content: flex-end; }
+.system-monitor[data-layout="compact"] .disk-speeds em { font-size: 11px; }
+.system-monitor[data-layout="compact"] .disk-speeds b { font-size: 8px; }
+.system-monitor[data-layout="compact"] .disk-card > small { display: none; }
+
+.system-monitor[data-layout="compact"] .network-card { grid-column: 1 / -1; padding: 7px 9px 6px; }
+.system-monitor[data-layout="compact"] .network-head strong { font-size: 12px; }
+.system-monitor[data-layout="compact"] .network-head small { display: none; }
+.system-monitor[data-layout="compact"] .network-values { max-width: none; gap: 5px; font-size: 9px; }
+.system-monitor[data-layout="compact"] .network-values em { font-size: 14px; }
+.system-monitor[data-layout="compact"] .network-values b { font-size: 9px; }
+.system-monitor[data-layout="compact"] .network-charts { display: block; position: relative; }
+.system-monitor[data-layout="compact"] #network-chart { width: 100%; height: 100%; min-height: 63px; }
+.system-monitor[data-layout="compact"] #network-upload-chart { display: none; }
+
+/* 设置面板 */
 .settings { position: absolute; z-index: 10; inset: 0; padding: 15px 17px 25px; overflow: auto; color: var(--text); background: rgba(24,24,28,.98); backdrop-filter: blur(28px); }
 .settings[hidden] { display: none; }
 .settings-head > div:first-child { display: grid; gap: 1px; }
 .settings-head strong { font-size: 16px; }
-.text-button { height: 28px; padding: 0 9px; border: 1px solid rgba(255,255,255,.13); border-radius: 9px; color: var(--text); background: rgba(255,255,255,.07); font-size: 9px; cursor: pointer; }
-.section-label, .metric-settings legend { color: var(--secondary); font-size: 9px; }
-.layout-settings { margin-top: 12px; }
-.layout-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; margin-top: 6px; }
-.layout-option { display: grid; justify-items: center; gap: 4px; padding: 6px 3px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; color: var(--text); background: rgba(255,255,255,.045); cursor: pointer; }
-.layout-option.selected { border-color: #0a84ff; background: rgba(10,132,255,.14); }
-.layout-option > span:last-child { display: grid; text-align: center; }
-.layout-option > span:last-child b { font-size: 9px; }
-.layout-option > span:last-child small { color: var(--secondary); font-size: 7px; }
-.layout-preview { position: relative; display: block; width: 60px; height: 31px; border-radius: 6px; background: rgba(223,230,241,.83); }
-.layout-preview i { position: absolute; top: 7px; left: 5px; width: 16px; height: 16px; border: 4px solid #31c482; border-left-color: rgba(90,100,115,.18); border-radius: 50%; }
-.layout-preview b { position: absolute; top: 5px; left: 25px; width: 14px; height: 8px; border-radius: 3px; background: #8d83eb; }
-.layout-preview em { position: absolute; top: 5px; right: 4px; bottom: 5px; width: 14px; border-bottom: 2px solid #2e91ff; transform: skewY(-12deg); }
-.preview-compact { width: 30px; height: 38px; }
-.preview-compact i { top: 3px; left: 7px; }.preview-compact b { top: 22px; left: 4px; width: 22px; }.preview-compact em { display: none; }
-.preview-medium { width: 46px; height: 35px; }.preview-medium em { top: 20px; left: 5px; width: 36px; }
+.text-button { height: 28px; padding: 0 9px; border: 1px solid rgba(255,255,255,.13); border-radius: 9px; color: var(--text); background: rgba(255,255,255,.07); font-size: 10px; cursor: pointer; }
+.section-label, .metric-settings legend { color: var(--secondary); font-size: 10px; }
 .metric-settings { margin: 12px 0 0; padding: 0; border: 0; }
 .metric-options { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 5px; margin-top: 6px; }
-.metric-options label { display: grid; place-items: center; gap: 4px; min-width: 0; padding: 7px 3px; border-radius: 9px; background: rgba(255,255,255,.05); font-size: 8px; cursor: pointer; }
+.metric-options label { display: grid; place-items: center; gap: 4px; min-width: 0; padding: 7px 3px; border-radius: 9px; background: rgba(255,255,255,.05); font-size: 9px; cursor: pointer; }
 .metric-options label > span { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
 .metric-options input { width: 15px; height: 15px; accent-color: #0a84ff; }
 .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #31c482; }
 .dot.memory { background: #8076e8; }.dot.gpu { background: #4c8fff; }.dot.disk { background: #a772ed; }.dot.network { background: #32c889; }
 .device-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 12px; }
-.device-settings label { display: grid; gap: 4px; color: var(--secondary); font-size: 8px; }
-.device-settings select { width: 100%; height: 31px; padding: 0 7px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; outline: none; color: var(--text); background: rgba(255,255,255,.07); font-size: 9px; }
-.settings-status { min-height: 11px; margin: 7px 0 0; color: var(--secondary); font-size: 8px; }
-.privacy-note { margin-bottom: 0; color: var(--secondary); font-size: 8px; line-height: 1.4; }
+.device-settings label { display: grid; gap: 4px; color: var(--secondary); font-size: 9px; }
+.device-settings select { width: 100%; height: 31px; padding: 0 7px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; outline: none; color: var(--text); background: rgba(255,255,255,.07); font-size: 10px; }
+.settings-status { min-height: 11px; margin: 7px 0 0; color: var(--secondary); font-size: 9px; }
+.privacy-note { margin-bottom: 0; color: var(--secondary); font-size: 9px; line-height: 1.4; }
 
-.system-monitor[data-layout="medium"] .dashboard { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(145px,1fr) 105px; }
-.system-monitor[data-layout="medium"] .network-card { grid-column: 1/-1; }
-.system-monitor[data-layout="medium"] #network-chart { min-height: 48px; }
-.system-monitor[data-layout="medium"] .dashboard.no-gauges,
-.system-monitor[data-layout="medium"] .dashboard.no-resources { grid-template-columns: 1fr; }
-.system-monitor[data-layout="medium"] .dashboard.no-network { grid-template-rows: 1fr; }
-
-.system-monitor[data-layout="compact"] { padding: 11px 11px 20px; }
-.system-monitor[data-layout="compact"] .monitor-head > strong { font-size: 15px; }
-.system-monitor[data-layout="compact"] .updated { display: none; }
-.system-monitor[data-layout="compact"] .dashboard { grid-template-columns: 1fr; grid-template-rows: auto auto minmax(90px,1fr); gap: 7px; }
-.system-monitor[data-layout="compact"] .gauges-card { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: 1fr; min-height: 92px; }
-.system-monitor[data-layout="compact"] .gauges-card.single { grid-template-columns: 1fr; }
-.system-monitor[data-layout="compact"] .gauge-panel + .gauge-panel { border-top: 0; border-left: 1px solid rgba(255,255,255,.16); }
-.system-monitor[data-layout="compact"] .usage-ring { width: 58px; height: 58px; }
-.system-monitor[data-layout="compact"] .usage-ring::before { width: 44px; height: 44px; }
-.system-monitor[data-layout="compact"] .resources-column { min-height: 166px; }
-.system-monitor[data-layout="compact"] .network-card { min-height: 92px; padding: 7px 9px; }
-.system-monitor[data-layout="compact"] #network-chart { min-height: 45px; }
 .system-monitor[data-layout="compact"] .settings { padding: 13px 14px 24px; }
-.system-monitor[data-layout="compact"] .layout-options { grid-template-columns: 1fr; }
-.system-monitor[data-layout="compact"] .layout-option { grid-template-columns: 55px 1fr; align-items: center; }
 .system-monitor[data-layout="compact"] .metric-options { grid-template-columns: 1fr 1fr; }
 .system-monitor[data-layout="compact"] .device-settings { grid-template-columns: 1fr; }
 
 @media (prefers-color-scheme: light) {
-  .metric-card { border-color: rgba(255,255,255,.72); background: rgba(255,255,255,.50); box-shadow: inset 0 1px white, 0 6px 16px rgba(55,70,100,.08); }
+  .metric-card, .resources-column,
+  .system-monitor[data-layout="compact"] .gauge-panel,
+  .system-monitor[data-layout="compact"] .resources-column > .metric-card,
+  .system-monitor[data-layout="compact"] .network-card {
+    border-color: rgba(255,255,255,.72);
+    background: rgba(255,255,255,.48);
+    box-shadow: inset 0 1px white, 0 5px 14px rgba(55,70,100,.07);
+  }
+  .resources-column > .metric-card { background: none; box-shadow: none; }
   .settings { background: rgba(244,246,251,.98); }
-  .icon-button, .text-button, .layout-option, .metric-options label, .device-settings select { border-color: rgba(20,20,24,.10); background: rgba(20,20,24,.04); }
+  .icon-button, .text-button, .metric-options label, .device-settings select { border-color: rgba(20,20,24,.10); background: rgba(20,20,24,.04); }
 }
 @media (prefers-color-scheme: dark) {
-  .usage-ring::before { background: rgba(46,47,52,.94); }
-  .mini-usage-ring::after { background: rgba(46,47,52,.94); }
+  .usage-ring::before,
+  .system-monitor[data-layout="compact"] .mini-usage-ring::after { background: rgba(46,47,52,.94); }
   .usage-ring span { color: rgba(255,255,255,.70); }
   .usage-ring strong { color: rgba(255,255,255,.96); }
 }

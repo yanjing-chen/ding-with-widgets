@@ -2,34 +2,37 @@
 
 const LAYOUT_PRESETS = {
   compact: {width: 280, height: 470},
-  medium: {width: 500, height: 340},
-  large: {width: 680, height: 250},
 };
 const METRICS = ['cpu', 'memory', 'gpu', 'disk', 'network'];
 const defaults = {
-  layoutPreset: 'large', opacity: 1, refreshInterval: 1,
+  layoutPreset: 'compact', opacity: 1, refreshInterval: 1,
   visibleMetrics: [...METRICS], gpuDevice: 'auto', diskDevice: 'all',
   networkDevice: 'auto', metricVisibilityCustomized: false,
 };
 const elements = Object.fromEntries([
   'updated', 'refresh-button', 'settings-button', 'dashboard', 'gauges-card',
   'cpu-panel', 'cpu-ring', 'cpu-value', 'cpu-detail', 'gpu-panel', 'gpu-ring',
-  'gpu-label', 'gpu-value', 'gpu-name', 'resources-column', 'memory-card',
+  'cpu-row-value', 'cpu-chart', 'gpu-label', 'gpu-row-label', 'gpu-value',
+  'gpu-row-value', 'gpu-name', 'gpu-chart', 'resources-column', 'memory-card',
   'memory-ring', 'memory-value', 'memory-progress', 'memory-percent', 'disk-card',
-  'storage-ring', 'storage-value', 'storage-progress', 'disk-read', 'disk-write',
+  'memory-chart', 'storage-ring', 'storage-value', 'storage-progress', 'disk-chart',
+  'disk-read', 'disk-write',
   'disk-label', 'network-card', 'network-label', 'network-down', 'network-up',
-  'network-chart', 'empty-state', 'status', 'settings', 'close-settings',
-  'refresh-devices', 'layout-options', 'metric-options', 'gpu-device',
+  'network-chart', 'network-upload-chart', 'empty-state', 'status', 'settings', 'close-settings',
+  'refresh-devices', 'metric-options', 'gpu-device',
   'disk-device', 'network-device', 'refresh-interval', 'opacity',
   'opacity-value', 'settings-status',
 ].map(id => [id, document.getElementById(id)]));
 const card = document.querySelector('.system-monitor');
-const history = {download: [], upload: []};
+const history = {
+  cpu: [], gpu: [], memory: [], storage: [], download: [], upload: [],
+};
 let config = copy(defaults);
 let snapshot = null;
 let refreshTimer = 0;
 let refreshing = false;
 let configNeedsSave = false;
+let layoutNeedsResize = false;
 
 function copy(value) { return JSON.parse(JSON.stringify(value ?? {})); }
 
@@ -48,10 +51,14 @@ function cleanConfig(saved) {
   }
   const refreshInterval = [1, 2, 3, 5].includes(Number(value.refreshInterval))
     ? Number(value.refreshInterval) : 1;
+  const layoutPreset = defaults.layoutPreset;
+  if (value.layoutPreset && value.layoutPreset !== layoutPreset) {
+    configNeedsSave = true;
+    layoutNeedsResize = true;
+  }
   return {
     ...defaults, ...value, visibleMetrics: [...new Set(visibleMetrics)], refreshInterval,
-    layoutPreset: Object.hasOwn(LAYOUT_PRESETS, value.layoutPreset)
-      ? value.layoutPreset : 'large',
+    layoutPreset,
     opacity: Math.min(1, Math.max(.35, Number(value.opacity) || 1)),
     gpuDevice: String(value.gpuDevice || 'auto'),
     diskDevice: String(value.diskDevice || 'all'),
@@ -90,14 +97,12 @@ function isVisible(metric) { return config.visibleMetrics.includes(metric); }
 function saveConfig() { return window.ding?.setConfig(copy(config)); }
 
 function applyAppearance() {
-  card.dataset.layout = config.layoutPreset;
+  card.dataset.layout = defaults.layoutPreset;
   card.style.setProperty('--widget-opacity', String(config.opacity));
   elements.opacity.value = String(Math.round(config.opacity * 100));
   elements['opacity-value'].value = `${Math.round(config.opacity * 100)}%`;
   elements['opacity-value'].textContent = elements['opacity-value'].value;
   elements['refresh-interval'].value = String(config.refreshInterval);
-  document.querySelectorAll('.layout-option').forEach(button =>
-    button.classList.toggle('selected', button.dataset.preset === config.layoutPreset));
   elements['metric-options'].querySelectorAll('input').forEach(input => {
     input.checked = isVisible(input.value);
   });
@@ -203,8 +208,21 @@ function drawChart(canvas, series, minimumMaximum = 1024) {
 }
 
 function drawCharts() {
+  drawChart(elements['cpu-chart'], [
+    {values: history.cpu, color: '#24bf7b', fill: 'rgba(36,191,123,.16)', width: 1.8},
+  ], 100);
+  drawChart(elements['gpu-chart'], [
+    {values: history.gpu, color: '#348cff', fill: 'rgba(52,140,255,.16)', width: 1.8},
+  ], 100);
+  drawChart(elements['memory-chart'], [
+    {values: history.memory, color: '#8757eb', fill: 'rgba(135,87,235,.15)', width: 1.8},
+  ], 100);
+  drawChart(elements['disk-chart'], [
+    {values: history.storage, color: '#9b63e8', fill: 'rgba(155,99,232,.15)', width: 1.8},
+  ], 100);
+
   drawChart(elements['network-chart'], [
-    {values: history.download, color: '#318fff', fill: 'rgba(49,143,255,.24)', width: 2},
+    {values: history.download, color: '#318fff', fill: 'rgba(49,143,255,.20)', width: 2},
     {values: history.upload, color: '#35c98d', width: 2},
   ]);
 }
@@ -218,21 +236,26 @@ function render(data, addHistory = true) {
   if (!data) return;
   setRing(elements['cpu-ring'], data.cpu?.usage);
   elements['cpu-value'].textContent = formatPercent(data.cpu?.usage);
+  elements['cpu-row-value'].textContent = formatPercent(data.cpu?.usage);
   elements['cpu-detail'].textContent = `${data.cpu?.logicalCpus || '--'} 个逻辑处理器`;
 
   const gpu = chooseGpu(Array.isArray(data.gpus) ? data.gpus : []);
   if (gpu) {
     elements['gpu-label'].textContent = gpu.vendor === '其他' ? 'GPU' : `${gpu.vendor} GPU`;
+    elements['gpu-row-label'].textContent = elements['gpu-label'].textContent;
     elements['gpu-name'].textContent = gpu.status === 'suspended'
       ? `${gpu.name} · 休眠` : gpu.name;
     elements['gpu-name'].title = gpu.name;
     elements['gpu-value'].textContent = gpu.status === 'suspended'
       ? '休眠' : formatPercent(gpu.usage);
+    elements['gpu-row-value'].textContent = elements['gpu-value'].textContent;
     setRing(elements['gpu-ring'], gpu.usage);
   } else {
     elements['gpu-label'].textContent = 'GPU';
+    elements['gpu-row-label'].textContent = 'GPU';
     elements['gpu-name'].textContent = '没有检测到 DRM 显卡';
     elements['gpu-value'].textContent = '--%';
+    elements['gpu-row-value'].textContent = '--%';
     setRing(elements['gpu-ring'], 0);
   }
 
@@ -258,6 +281,10 @@ function render(data, addHistory = true) {
   elements['network-down'].textContent = formatBytes(network.download, true);
   elements['network-up'].textContent = formatBytes(network.upload, true);
   if (addHistory) {
+    appendHistory('cpu', data.cpu?.usage);
+    appendHistory('gpu', gpu?.status === 'suspended' ? 0 : gpu?.usage);
+    appendHistory('memory', memory.usage);
+    appendHistory('storage', storage.usage);
     appendHistory('download', network.download);
     appendHistory('upload', network.upload);
   }
@@ -327,16 +354,6 @@ elements['settings-button'].addEventListener('click', () => {
 elements['close-settings'].addEventListener('click', () => { elements.settings.hidden = true; });
 elements['refresh-button'].addEventListener('click', () => refresh(false, true));
 elements['refresh-devices'].addEventListener('click', () => refresh(true, true));
-elements['layout-options'].addEventListener('click', async event => {
-  const preset = event.target.closest('.layout-option')?.dataset.preset;
-  if (!Object.hasOwn(LAYOUT_PRESETS, preset)) return;
-  config.layoutPreset = preset;
-  applyAppearance();
-  await saveConfig();
-  window.ding?.setSize?.(LAYOUT_PRESETS[preset].width, LAYOUT_PRESETS[preset].height);
-  requestAnimationFrame(drawCharts);
-  elements.settings.hidden = true;
-});
 elements['metric-options'].addEventListener('change', async event => {
   const checkbox = event.target.closest('input[type="checkbox"]');
   if (!checkbox) return;
@@ -372,6 +389,9 @@ async function start() {
   config = cleanConfig(await window.ding?.getConfig?.());
   if (configNeedsSave) await saveConfig();
   applyAppearance();
+  if (layoutNeedsResize)
+    window.ding?.setSize?.(LAYOUT_PRESETS.compact.width,
+      LAYOUT_PRESETS.compact.height);
   await refresh(true);
   restartTimer();
 }

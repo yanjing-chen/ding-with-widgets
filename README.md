@@ -4,11 +4,11 @@
 
 本项目是 [`rastersoft/desktop-icons-ng`](https://gitlab.com/rastersoft/desktop-icons-ng) 的非官方衍生版本，并参考了 [`smedius/desktop-icons-ng`](https://gitlab.com/smedius/desktop-icons-ng) 的 GTK4 Widget 架构思路。它不是 GNOME、Canonical、Apple 或上述上游项目的官方产品。
 
-## 1.0.1 正式版
+## 1.2.0 正式版
 
-1.0.1 保留 1.0.0 的 Widget、多屏幕和桌面管理功能，仅修正两处桌面图标交互细节：选中图标与框选区域固定使用中性灰底、白色边框，不再跟随系统主题强调色；拖动文件时显示真实文件图标和名称，不再退化为通用文件图标。
+1.2.0 将系统监控重新设计为单一紧凑布局：CPU 与 GPU 使用大圆环，内存与磁盘并排显示容量，网络区显示上下行速度和曲线。取消系统监控的尺寸选择，旧尺寸设置会自动迁移；辅助文字、容量和速度信息也经过放大和重新对齐。
 
-1.0.0 引入的多屏幕物理身份记录、跨屏幕拖动和八个中文 Widget 均保持不变。详细内容见 [`RELEASE_NOTES_1.0.1.md`](RELEASE_NOTES_1.0.1.md)；首个正式版本的说明仍可参阅 [`RELEASE_NOTES_1.0.0.md`](RELEASE_NOTES_1.0.0.md)。
+其他 Widget、系统监控的数据采集与设备选择、多屏幕物理身份记录、跨屏幕拖动及桌面图标功能均保持不变。详细内容见 [`RELEASE_NOTES_1.2.0.md`](RELEASE_NOTES_1.2.0.md)；此前版本说明仍可参阅 [`RELEASE_NOTES_1.0.1.md`](RELEASE_NOTES_1.0.1.md) 和 [`RELEASE_NOTES_1.0.0.md`](RELEASE_NOTES_1.0.0.md)。
 
 ## 主要功能
 
@@ -26,13 +26,13 @@
 - 设备电量使用系统 UPower 数据，并可选择显示笔记本电脑和已连接蓝牙设备。
 - 照片可从自定义本机文件夹轮播，支持两种单图尺寸和三图拼贴。
 - 音乐播放器通过 MPRIS 兼容用户已安装应用，支持三种尺寸、封面、进度和播放控制。
-- 系统监控支持三种尺寸，可选择显示 CPU、内存、AMD/NVIDIA 显卡、磁盘容量与实时读写，以及网络上下行曲线。
+- 系统监控采用紧凑卡片布局，可选择显示 CPU、内存、AMD/NVIDIA 显卡、磁盘容量与实时读写，以及网络上下行曲线。
 
 扩展标识：
 
 - 名称：`DING with Widgets`
 - UUID：`ding-with-widgets@yanjing_chen.qq.com`
-- 当前正式版本：`1.0.1`
+- 当前正式版本：`1.2.0`
 
 ## 系统要求
 
@@ -48,7 +48,7 @@
 
 ### 从 Release 安装（推荐）
 
-1. 下载对应版本的 ZIP：`ding-with-widgets-v1.0.1-gnome50-51.zip`。
+1. 下载对应版本的 ZIP：`ding-with-widgets-v1.2.0-gnome50-51.zip`。
 2. 打开终端并安装依赖：
 
 ```bash
@@ -60,7 +60,7 @@ sudo apt install gjs meson ninja-build libglib2.0-bin gir1.2-webkit-6.0 gir1.2-e
 
 ```bash
 cd ~/下载
-unzip -o ding-with-widgets-v1.0.1-gnome50-51.zip
+unzip -o ding-with-widgets-v1.2.0-gnome50-51.zip
 cd ding-with-widgets
 chmod +x install-local-test.sh
 ./install-local-test.sh

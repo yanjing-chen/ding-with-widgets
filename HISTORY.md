@@ -1,5 +1,16 @@
 # History of versions #
 
+* Version 1.2.0 (2026-10-22)
+  * Reworked System Monitor into one compact, readable card layout
+  * Removed the System Monitor size selector and migrated older presets
+  * Enlarged secondary labels and aligned memory and disk indicators
+  * Kept CPU, memory, AMD/NVIDIA GPU, disk and network monitoring unchanged
+
+* Version 1.0.1 (2026-10-22)
+  * Restored neutral grey desktop selection styling
+  * Restored real file icons and names in desktop drag previews
+  * Removed the decorative blue glow from World Clock
+
 * Version 1.0.0 (2026-10-01)
   * First stable release of DING with Widgets
   * Eight Chinese desktop widgets with persistent content, size and position

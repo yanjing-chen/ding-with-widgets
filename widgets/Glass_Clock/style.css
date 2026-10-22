@@ -346,17 +346,6 @@ input:focus { border-color: rgba(91,156,255,.85); }
 .preview-hour { height: 7px; transform: translateX(-50%) rotate(305deg); }
 .preview-minute { height: 10px; transform: translateX(-50%) rotate(55deg); }
 
-.glow {
-  position: absolute;
-  right: -45px;
-  bottom: -65px;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: rgba(75,143,255,.28);
-  filter: blur(42px);
-}
-
 .attribution {
   position: absolute;
   z-index: 2;
